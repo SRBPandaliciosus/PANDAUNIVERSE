@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Códigos Referido | PandaUniverse</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fdfcf9;--bg2:#f7f5f0;
+  --sage:#7a9e7e;--sage-lt:#d4e4d5;--sage-pal:#edf5ee;
+  --blush:#e8c4b8;--blush-lt:#f7ede8;
+  --butter:#f0d98c;--butter-lt:#fdf6dc;
+  --sky-lt:#e8f3f9;--lav-lt:#f0edf9;
+  --charcoal:#2c2c2a;--mid:#6b6b66;--light:#a8a89e;
+  --border:rgba(44,44,42,0.08);--border2:rgba(44,44,42,0.14);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--charcoal);overflow-x:hidden;font-size:15px;line-height:1.6}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--sage-lt);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;background:rgba(253,252,249,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--charcoal);text-decoration:none;display:flex;align-items:center;gap:0.5rem}
+.logo-panda{width:34px;height:34px;background:var(--charcoal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo em{font-style:italic;color:var(--sage);font-weight:300}
+.nav-center{display:flex;gap:0.25rem}
+.nav-center a{font-size:0.82rem;font-weight:500;color:var(--mid);text-decoration:none;padding:0.4rem 0.9rem;border-radius:100px;transition:background 0.2s,color 0.2s}
+.nav-center a:hover,.nav-center a.active{background:var(--bg2);color:var(--charcoal)}
+.nav-pill{background:var(--charcoal);color:var(--bg)!important;padding:0.45rem 1.1rem;border-radius:100px;font-size:0.82rem;font-weight:500;text-decoration:none;transition:background 0.2s,transform 0.15s!important}
+.nav-pill:hover{background:var(--sage)!important;transform:scale(1.04)}
+
+/* PAGE HEADER */
+.page-header{padding:7rem 2rem 3rem;text-align:center;background:var(--bg2);border-bottom:1px solid var(--border)}
+.eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);margin-bottom:0.75rem}
+.page-header h1{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:0.75rem}
+.page-header h1 em{font-style:italic;font-weight:300;color:var(--sage)}
+.page-header p{color:var(--mid);max-width:520px;margin:0 auto;line-height:1.8}
+.wrap{max-width:1080px;margin:0 auto}
+.section{padding:4rem 2rem}
+
+/* TABS */
+.tab-bar{display:flex;gap:0.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem;flex-wrap:wrap}
+.tab-btn{padding:0.65rem 1.3rem;border-radius:12px 12px 0 0;font-size:0.83rem;font-weight:600;cursor:pointer;border:1px solid transparent;border-bottom:none;color:var(--mid);background:transparent;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s}
+.tab-btn.active{background:var(--bg);color:var(--charcoal);border-color:var(--border);border-bottom-color:var(--bg);margin-bottom:-1px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* GRID */
+.ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+
+/* SKELETON */
+.skeleton-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.skel{background:var(--bg2);border-radius:20px;height:300px;animation:pulse 1.5s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+
+/* ERROR */
+.error-box{background:var(--blush-lt);border:1px solid var(--blush);border-radius:16px;padding:2rem;text-align:center;color:#8a4030}
+.error-box h3{font-family:'Fraunces',serif;margin-bottom:0.5rem}
+
+/* EMPTY */
+.empty-box{text-align:center;padding:4rem 2rem;color:var(--mid)}
+.empty-box .emoji{font-size:3rem;margin-bottom:1rem}
+
+/* REF CARD */
+.ref-card{border-radius:20px;border:1px solid var(--border);padding:1.5rem;background:var(--bg);transition:transform 0.25s,border-color 0.2s,box-shadow 0.25s;position:relative;display:flex;flex-direction:column;gap:0.6rem}
+.ref-card:hover{transform:translateY(-4px);border-color:var(--sage-lt);box-shadow:0 12px 28px rgba(44,44,42,0.07)}
+.ref-expired{opacity:0.55}
+.ref-badge{position:absolute;top:1rem;right:1rem;padding:0.15rem 0.65rem;border-radius:100px;font-size:0.65rem;font-weight:700}
+.badge-new{background:var(--butter-lt);color:#7a5e00}
+.badge-exp{background:#fee2e2;color:#991b1b}
+.ref-logo-wrap{width:48px;height:48px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--bg2);font-size:1.6rem;flex-shrink:0}
+.ref-logo-wrap img{width:100%;height:100%;object-fit:contain}
+.ref-header{display:flex;align-items:center;gap:0.75rem}
+.ref-name{font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
+.ref-type{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--light)}
+.ref-benefit{font-size:0.82rem;color:var(--mid);line-height:1.6}
+.ref-discount{font-size:0.9rem;font-weight:700;color:var(--sage)}
+.ref-caducidad{font-size:0.72rem;color:var(--light)}
+.copy-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border-radius:10px;padding:0.5rem 0.75rem}
+.code-text{font-family:monospace;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;color:var(--charcoal)}
+.copy-btn{font-size:0.7rem;font-weight:700;color:var(--sage);background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;padding:0.2rem 0.5rem;border-radius:6px;transition:background 0.15s}
+.copy-btn:hover{background:var(--sage-lt)}
+.ref-link-btn{display:block;text-align:center;background:var(--charcoal);color:var(--bg);border-radius:100px;padding:0.55rem 1rem;font-size:0.78rem;font-weight:600;text-decoration:none;transition:background 0.2s;margin-top:auto}
+.ref-link-btn:hover{background:var(--sage)}
+.no-code{font-size:0.75rem;color:var(--light);font-style:italic;text-align:center}
+
+/* DISCLAIMER */
+.disclaimer{margin-top:2.5rem;padding:1rem 1.25rem;background:var(--bg2);border-radius:12px;font-size:0.75rem;color:var(--light);text-align:center;line-height:1.7}
+
+/* FOOTER */
+footer{background:var(--charcoal);padding:3rem 2rem 1.5rem}
+.footer-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.f-logo{color:#fdfcf9;margin-bottom:0.75rem}
+.f-logo em{color:var(--sage-lt)}
+.f-desc{font-size:0.82rem;color:rgba(253,252,249,0.45);line-height:1.7;max-width:240px}
+.f-col h5{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(253,252,249,0.4);margin-bottom:1rem}
+.f-col ul{list-style:none}
+.f-col li{margin-bottom:0.55rem}
+.f-col a{color:rgba(253,252,249,0.55);font-size:0.82rem;text-decoration:none;transition:color 0.2s}
+.f-col a:hover{color:var(--sage-lt)}
+.footer-bottom{max-width:1080px;margin:0 auto;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:rgba(253,252,249,0.28);flex-wrap:wrap;gap:0.5rem}
+.footer-bottom a{color:rgba(253,252,249,0.28);text-decoration:none}
+.footer-bottom a:hover{color:var(--sage-lt)}
+
+@media(max-width:860px){
+  nav{padding:0 1.25rem}.nav-center{display:none}
+  .ref-grid,.skeleton-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:540px){
+  .ref-grid,.skeleton-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .section{padding:3rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-panda">🐼</div>
+    Panda<em>Universe</em>
+  </a>
+  <div class="nav-center">
+    <a href="recetas.html">Recetas</a>
+    <a href="chollos.html">Chollos</a>
+    <a href="tienda.html">Tienda</a>
+    <a href="referidos.html" class="active">Referidos</a>
+  </div>
+  <a href="index.html#newsletter" class="nav-pill">Suscríbete</a>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">Códigos & Planes amigo</div>
+  <h1>Gana dinero desde<br><em>el primer día</em></h1>
+  <p>Bancos, apps y redes sociales con códigos de referido. Úsalos, ganas tú. Los dos salimos ganando. 🐼</p>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('bancos',this)">🏦 Bancos</button>
+      <button class="tab-btn" onclick="switchTab('compras',this)">🛒 Compras</button>
+      <button class="tab-btn" onclick="switchTab('redes',this)">📱 Redes Sociales</button>
+    </div>
+
+    <div id="panel-bancos" class="tab-panel active">
+      <div id="grid-bancos" class="ref-grid">
+        <div class="skeleton-grid" style="display:contents">
+          <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+        </div>
+      </div>
+    </div>
+    <div id="panel-compras" class="tab-panel">
+      <div id="grid-compras" class="ref-grid"></div>
+    </div>
+    <div id="panel-redes" class="tab-panel">
+      <div id="grid-redes" class="ref-grid"></div>
+    </div>
+
+    <p class="disclaimer">* Algunos enlaces pueden contener códigos de afiliado o referido. Las condiciones de cada oferta pueden cambiar sin previo aviso. Consulta siempre los términos en la página oficial de cada producto.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="f-logo logo"><div class="logo-panda">🐼</div>Panda<em>Universe</em></div>
+      <p class="f-desc">Dos marcas, un espíritu. Recetas, chollos, finanzas y TikTok Shop con sello panda.</p>
+    </div>
+    <div class="f-col">
+      <h5>Pandaliciosus</h5>
+      <ul>
+        <li><a href="recetas.html">Blog de recetas</a></li>
+        <li><a href="https://www.tiktok.com/@pandaliciosus" target="_blank">TikTok</a></li>
+        <li><a href="https://www.instagram.com/pandaliciosus" target="_blank">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@pandaliciosus" target="_blank">YouTube</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Pandachollo</h5>
+      <ul>
+        <li><a href="chollos.html">Blog de chollos</a></li>
+        <li><a href="referidos.html">Códigos referido</a></li>
+        <li><a href="https://www.tiktok.com/@pandachollo" target="_blank">TikTok</a></li>
+        <li><a href="https://www.youtube.com/@pandachollo" target="_blank">YouTube</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="mailto:hola@pandauniverse.es">hola@pandauniverse.es</a></li>
+        <li><a href="#">Colaboraciones</a></li>
+        <li><a href="index.html">Inicio</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 PandaUniverse · Hecho con 🐼 y mucho bambú</span>
+    <span><a href="#">Privacidad</a> · <a href="#">Aviso legal</a></span>
+  </div>
+</footer>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────
+const SHEET_ID = '1KD9z_lI3ZTIanqxEwZTuQizOj4WgObw19tebtAcCSBY';
+const API_KEY  = ''; // Deja vacío: usamos el endpoint público CSV de Google Sheets
+// ────────────────────────────────────────────────────────────────
+
+// Mapa hoja → {gid estimado, parser}
+// Google Sheets publica las hojas como CSV por nombre usando gviz
+const SHEETS = {
+  bancos:  { name: 'Bancos',        cols: ['nombre','codigodescuento','caducidad','imagen','url','bases','logo'] },
+  compras: { name: 'Compras',       cols: ['nombre','codigodescuento','caducidad','imagen','url','bases','logo'] },
+  redes:   { name: 'RedesSociales', cols: ['nombre','codigo','descuento','caducidad','imagen','url','bases','tiktok','logo'] },
+};
+
+const loaded = {};
+let activeTab = 'bancos';
+
+function csvUrl(sheetName){
+  return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
+}
+
+async function loadSheet(key){
+  if(loaded[key]) return;
+  const cfg = SHEETS[key];
+  const grid = document.getElementById('grid-'+key);
+  grid.innerHTML = '<div class="skeleton-grid" style="display:contents"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>';
+  try {
+    const res = await fetch(csvUrl(cfg.name));
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const text = await res.text();
+    const rows = parseCSV(text);
+    if(rows.length <= 1){ grid.innerHTML = emptyHTML(); loaded[key]=true; return; }
+    // primera fila = cabeceras, ignorar
+    const data = rows.slice(1);
+    grid.innerHTML = '';
+    let count = 0;
+    data.forEach(row => {
+      if(!row[0] || row[0].trim()==='') return; // fila vacía
+      const card = buildCard(row, key);
+      grid.appendChild(card);
+      count++;
+    });
+    if(count===0) grid.innerHTML = emptyHTML();
+    loaded[key] = true;
+  } catch(e) {
+    grid.innerHTML = errorHTML(e.message);
+  }
+}
+
+function parseCSV(text){
+  const rows=[];
+  let inQ=false,cell='',row=[];
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(c==='"'){ if(inQ&&text[i+1]==='"'){cell+='"';i++;}else{inQ=!inQ;} }
+    else if(c===','&&!inQ){ row.push(cell.trim());cell=''; }
+    else if((c==='\n'||c==='\r')&&!inQ){
+      if(c==='\r'&&text[i+1]==='\n') i++;
+      row.push(cell.trim());rows.push(row);row=[];cell='';
+    } else { cell+=c; }
+  }
+  if(cell||row.length) { row.push(cell.trim()); rows.push(row); }
+  return rows;
+}
+
+function buildCard(row, key){
+  const cfg = SHEETS[key];
+  const get = (colName) => {
+    const idx = cfg.cols.indexOf(colName);
+    return (idx>=0 && row[idx]) ? row[idx].trim() : '';
+  };
+
+  const nombre    = get('nombre');
+  const codigo    = key==='redes' ? get('codigo') : get('codigodescuento');
+  const descuento = get('descuento') || get('codigodescuento');
+  const caducidad = get('caducidad');
+  const imagen    = get('imagen');
+  const logo      = get('logo');
+  const url       = get('url');
+  const bases     = get('bases');
+  const tiktok    = get('tiktok');
+
+  // Caducidad check
+  let expired = false, daysLeft = null;
+  if(caducidad && caducidad !== '-' && caducidad !== ''){
+    const parts = caducidad.split('/');
+    let expDate;
+    if(parts.length===3) expDate = new Date(parts[2], parts[1]-1, parts[0]);
+    else expDate = new Date(caducidad);
+    if(!isNaN(expDate)){
+      const diff = expDate - new Date();
+      expired = diff < 0;
+      daysLeft = Math.ceil(diff/(1000*60*60*24));
+    }
+  }
+
+  const div = document.createElement('div');
+  div.className = 'ref-card' + (expired ? ' ref-expired' : '');
+
+  // badge
+  let badge = '';
+  if(expired) badge = '<span class="ref-badge badge-exp">Caducado</span>';
+  else if(daysLeft!==null && daysLeft<=7) badge = `<span class="ref-badge badge-new">Caduca en ${daysLeft}d</span>`;
+
+  // logo/imagen
+  const logoSrc = logo || imagen;
+  const logoHtml = logoSrc
+    ? `<img src="${logoSrc}" alt="${nombre}" onerror="this.style.display='none';this.parentNode.textContent='🏷️'">`
+    : '🏷️';
+
+  // código row
+  const codigoHtml = codigo && codigo!=='-'
+    ? `<div class="copy-row">
+        <span class="code-text">${codigo}</span>
+        <button class="copy-btn" onclick="copyCode(this,'${codigo}')">Copiar</button>
+       </div>`
+    : (url ? '' : '<p class="no-code">Sin código — usar enlace directo</p>');
+
+  // descuento/beneficio label
+  const beneficioHtml = descuento && descuento!==codigo
+    ? `<div class="ref-discount">🎁 ${descuento}</div>`
+    : '';
+
+  // caducidad label
+  const cadHtml = caducidad && caducidad!=='-'
+    ? `<div class="ref-caducidad">⏱ Válido hasta: ${caducidad}</div>`
+    : '';
+
+  // bases
+  const basesHtml = bases && bases!=='-'
+    ? `<div class="ref-benefit">${bases}</div>`
+    : '';
+
+  // tiktok link (solo redes)
+  const tiktokHtml = tiktok && tiktok!=='-'
+    ? `<a href="${tiktok}" target="_blank" class="ref-link-btn" style="background:#2c2c2a">Ver en TikTok →</a>`
+    : '';
+
+  // url link
+  const urlHtml = url && url!=='-'
+    ? `<a href="${url}" target="_blank" rel="noopener" class="ref-link-btn">Conseguir ahora →</a>`
+    : '';
+
+  div.innerHTML = `
+    ${badge}
+    <div class="ref-header">
+      <div class="ref-logo-wrap">${logoHtml}</div>
+      <div>
+        <div class="ref-name">${nombre}</div>
+        <div class="ref-type">${key==='bancos'?'Banco / Finanzas':key==='compras'?'Tienda / App':'Red Social'}</div>
+      </div>
+    </div>
+    ${basesHtml}
+    ${beneficioHtml}
+    ${cadHtml}
+    ${codigoHtml}
+    ${tiktokHtml}
+    ${urlHtml}
+  `;
+  return div;
+}
+
+function emptyHTML(){
+  return `<div class="empty-box" style="grid-column:1/-1"><div class="emoji">🐼</div><p>Aún no hay entradas en esta sección. ¡Pronto habrá chollos!</p></div>`;
+}
+function errorHTML(msg){
+  return `<div class="error-box" style="grid-column:1/-1">
+    <h3>No se pudieron cargar los datos</h3>
+    <p>Asegúrate de que el Google Sheet es público y la hoja tiene el nombre correcto.<br><small>${msg}</small></p>
+    <p style="margin-top:1rem;font-size:0.8rem">Cómo publicar: Archivo → Compartir → Publicar en la web → hoja concreta → CSV</p>
+  </div>`;
+}
+
+function copyCode(btn, code){
+  navigator.clipboard.writeText(code).then(()=>{
+    const orig = btn.textContent;
+    btn.textContent = '✓';btn.style.color='#7a9e7e';
+    setTimeout(()=>{btn.textContent=orig;btn.style.color='';},2000);
+  });
+}
+
+function switchTab(key, btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+key).classList.add('active');
+  activeTab = key;
+  loadSheet(key);
+}
+
+// Carga inicial
+loadSheet('bancos');
+</script>
+</body>
+</html>
