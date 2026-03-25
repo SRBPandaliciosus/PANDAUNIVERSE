@@ -276,8 +276,8 @@ function buildCard(row, key){
   };
 
   const nombre    = get('nombre');
-  const codigo    = key==='redes' ? get('codigo') : get('codigodescuento');
-  const descuento = get('descuento') || get('codigodescuento');
+  const codigo    = key==='redes' ? get('codigo');
+  const descuento = get('descuento');
   const caducidad = get('caducidad');
   const imagen    = get('imagen');
   const logo      = get('logo');
