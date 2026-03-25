@@ -120,7 +120,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem}
 
 <nav>
   <a href="index.html" class="logo">
-    <div class="logo-panda">🐼</div>
+    <img src="PANDALICIOSUS.JPG" alt="PandaUniverse" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;">
     Panda<em>Universe</em>
   </a>
   <div class="nav-center">
@@ -128,6 +128,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem}
     <a href="chollos.html">Chollos</a>
     <a href="tienda.html">Tienda</a>
     <a href="referidos.html" class="active">Referidos</a>
+    <a href="contacto.html">Contacto</a>
   </div>
   <a href="index.html#newsletter" class="nav-pill">Suscríbete</a>
 </nav>
@@ -167,7 +168,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem}
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="f-logo logo"><div class="logo-panda">🐼</div>Panda<em>Universe</em></div>
+      <div class="f-logo logo"><img src="PANDALICIOSUS.JPG" alt="PandaUniverse" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;">Panda<em>Universe</em></div>
       <p class="f-desc">Dos marcas, un espíritu. Recetas, chollos, finanzas y TikTok Shop con sello panda.</p>
     </div>
     <div class="f-col">
@@ -191,8 +192,8 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem}
     <div class="f-col">
       <h5>Contacto</h5>
       <ul>
-        <li><a href="mailto:hola@pandauniverse.es">hola@pandauniverse.es</a></li>
-        <li><a href="#">Colaboraciones</a></li>
+        <li><a href="contacto.html">Formulario de contacto</a></li>
+        <li><a href="contacto.html">Colaboraciones</a></li>
         <li><a href="index.html">Inicio</a></li>
       </ul>
     </div>
@@ -212,9 +213,9 @@ const API_KEY  = ''; // Deja vacío: usamos el endpoint público CSV de Google S
 // Mapa hoja → {gid estimado, parser}
 // Google Sheets publica las hojas como CSV por nombre usando gviz
 const SHEETS = {
-  bancos:  { name: 'Bancos',        cols: ['nombre','código','descuento','caducidad','imagen','url','bases','logo'] },
-  compras: { name: 'Compras',       cols: ['nombre','código','descuento','caducidad','imagen','url','bases','logo'] },
-  redes:   { name: 'RedesSociales', cols: ['nombre','código','descuento','caducidad','imagen','url','bases','tiktok','logo'] },
+  bancos:  { name: 'Bancos',        cols: ['nombre','codigo','descuento','caducidad','imagen','url','bases','logo'] },
+  compras: { name: 'Compras',       cols: ['nombre','codigo','descuento','caducidad','imagen','url','bases','logo'] },
+  redes:   { name: 'RedesSociales', cols: ['nombre','codigo','descuento','caducidad','imagen','url','bases','tiktok','logo'] },
 };
 
 const loaded = {};
@@ -276,7 +277,7 @@ function buildCard(row, key){
   };
 
   const nombre    = get('nombre');
-  const codigo    = key==='redes' ? get('codigo');
+  const codigo    = get('codigo');
   const descuento = get('descuento');
   const caducidad = get('caducidad');
   const imagen    = get('imagen');
@@ -310,7 +311,7 @@ function buildCard(row, key){
   // logo/imagen
   const logoSrc = logo || imagen;
   const logoHtml = logoSrc
-    ? `<img src="${imagen}" alt="${nombre}" onerror="this.style.display='none';this.parentNode.textContent='🏷️'">`
+    ? `<img src="${logoSrc}" alt="${nombre}" onerror="this.style.display='none';this.parentNode.textContent='🏷️'">`
     : '🏷️';
 
   // código row
