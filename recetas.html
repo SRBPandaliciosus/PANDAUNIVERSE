@@ -246,13 +246,43 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
   </div>
 </footer>
 
+
 <script>
+/* ── HAMBURGER ── */
+function toggleMenu(){
+  var m = document.getElementById('mobileMenu');
+  var b = document.getElementById('hamburgerBtn');
+  if(!m || !b) return;
+  var open = m.classList.toggle('open');
+  var spans = b.querySelectorAll('span');
+  if(open){
+    spans[0].style.transform='rotate(45deg) translate(5px,5px)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+  } else {
+    spans[0].style.transform='';
+    spans[1].style.opacity='1';
+    spans[2].style.transform='';
+  }
+}
+document.addEventListener('click', function(e){
+  var m = document.getElementById('mobileMenu');
+  var b = document.getElementById('hamburgerBtn');
+  if(!m || !b) return;
+  if(!m.contains(e.target) && !b.contains(e.target)){
+    m.classList.remove('open');
+    var spans = b.querySelectorAll('span');
+    spans[0].style.transform=''; spans[1].style.opacity='1'; spans[2].style.transform='';
+  }
+});
+
+/* ── FILTER ── */
 function filterRecetas(cat, btn){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
   btn.classList.add('active');
-  document.querySelectorAll('#recetas-grid .blog-card').forEach(card=>{
+  document.querySelectorAll('#recetas-grid .blog-card').forEach(function(card){
     if(cat==='todo') card.style.display='';
-    else card.style.display = card.dataset.cat && card.dataset.cat.includes(cat) ? '' : 'none';
+    else card.style.display = (card.dataset.cat && card.dataset.cat.includes(cat)) ? '' : 'none';
   });
 }
 </script>

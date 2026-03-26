@@ -199,10 +199,10 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
           1. Ve a https://formspree.io y crea una cuenta gratuita
           2. Crea un nuevo formulario con tu email panda.kitchen.canal@gmail.com
           3. Copia el endpoint que te dan (ej: https://formspree.io/f/xabcdefg)
-          4. Sustituye "TU_ENDPOINT_FORMSPREE" por ese valor en la línea de abajo
+          Endpoint configurado: mvzvoyvy
           El email NUNCA aparece en el código público de la web.
         -->
-        <form id="contactForm" action="https://formspree.io/f/TU_ENDPOINT_FORMSPREE" method="POST">
+        <form id="contactForm" action="https://formspree.io/f/mvzvoyvy" method="POST">
 
           <div class="field-row">
             <div class="field">
@@ -299,43 +299,70 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
   </div>
 </footer>
 
+
 <script>
-function updateCount(el){
-  document.getElementById('charCount').textContent = el.value.length;
-}
-
-const form = document.getElementById('contactForm');
-const btn  = document.getElementById('submitBtn');
-const box  = document.getElementById('successBox');
-const consent = document.getElementById('contactConsent');
-
-form.addEventListener('submit', async function(e){
-  e.preventDefault();
-  if(!consent.checked){
-    consent.parentElement.style.color = '#c06040';
-    return;
+/* ── HAMBURGER ── */
+function toggleMenu(){
+  var m = document.getElementById('mobileMenu');
+  var b = document.getElementById('hamburgerBtn');
+  if(!m || !b) return;
+  var open = m.classList.toggle('open');
+  var spans = b.querySelectorAll('span');
+  if(open){
+    spans[0].style.transform='rotate(45deg) translate(5px,5px)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+  } else {
+    spans[0].style.transform='';
+    spans[1].style.opacity='1';
+    spans[2].style.transform='';
   }
-  btn.disabled = true;
-  btn.textContent = 'Enviando...';
-
-  try {
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
-    if(res.ok){
-      form.style.display = 'none';
-      box.style.display  = 'block';
-    } else {
-      throw new Error('Error en el envío');
-    }
-  } catch(err) {
-    btn.disabled = false;
-    btn.innerHTML = 'Enviar mensaje 🐼';
-    alert('Hubo un problema al enviar. Por favor, inténtalo de nuevo en un momento.');
+}
+document.addEventListener('click', function(e){
+  var m = document.getElementById('mobileMenu');
+  var b = document.getElementById('hamburgerBtn');
+  if(!m || !b) return;
+  if(!m.contains(e.target) && !b.contains(e.target)){
+    m.classList.remove('open');
+    var spans = b.querySelectorAll('span');
+    spans[0].style.transform=''; spans[1].style.opacity='1'; spans[2].style.transform='';
   }
 });
+
+/* ── CONTACT FORM ── */
+(function(){
+  var form = document.getElementById('contactForm');
+  if(!form) return;
+  var btn = document.getElementById('submitBtn');
+  var box = document.getElementById('successBox');
+  var consent = document.getElementById('contactConsent');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(consent && !consent.checked){
+      consent.parentElement.style.color = '#c06040';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    fetch(form.action, {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}})
+      .then(function(res){
+        if(res.ok){
+          form.style.display='none';
+          box.style.display='block';
+        } else { throw new Error('server'); }
+      })
+      .catch(function(){
+        btn.disabled = false;
+        btn.textContent = 'Enviar mensaje 🐼';
+        alert('Hubo un problema al enviar. Inténtalo de nuevo en un momento.');
+      });
+  });
+  var charArea = document.getElementById('mensaje');
+  var charCount = document.getElementById('charCount');
+  if(charArea && charCount){
+    charArea.addEventListener('input', function(){ charCount.textContent = charArea.value.length; });
+  }
+})();
 </script>
 </body>
 </html>
