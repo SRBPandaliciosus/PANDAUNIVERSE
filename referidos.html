@@ -85,6 +85,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .ref-link-btn{display:block;text-align:center;background:var(--charcoal);color:var(--bg);border-radius:100px;padding:0.55rem 1rem;font-size:0.78rem;font-weight:600;text-decoration:none;transition:background 0.2s;margin-top:auto}
 .ref-link-btn:hover{background:var(--sage)}
 .no-code{font-size:0.75rem;color:var(--light);font-style:italic;text-align:center}
+.bases-link{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.75rem;font-weight:600;color:var(--mid);text-decoration:none;padding:0.3rem 0;border-bottom:1px dashed var(--border2);transition:color 0.2s,border-color 0.2s}
+.bases-link:hover{color:var(--sage);border-color:var(--sage)}
 
 /* DISCLAIMER */
 .disclaimer{margin-top:2.5rem;padding:1rem 1.25rem;background:var(--bg2);border-radius:12px;font-size:0.75rem;color:var(--light);text-align:center;line-height:1.7}
@@ -308,58 +310,64 @@ function buildCard(row, key){
   if(expired) badge = '<span class="ref-badge badge-exp">Caducado</span>';
   else if(daysLeft!==null && daysLeft<=7) badge = `<span class="ref-badge badge-new">Caduca en ${daysLeft}d</span>`;
 
-  // logo/imagen
-  const logoSrc = logo || imagen;
-  const logoHtml = logoSrc
-    ? `<img src="${logoSrc}" alt="${nombre}" onerror="this.style.display='none';this.parentNode.textContent='🏷️'">`
+  // imagen → nombre de fichero local en el repositorio (ej: "revolut.jpg")
+  // logo  → nombre de fichero local del logo (ej: "logo_revolut.png")
+  // Se muestra imagen si existe, si no logo, si no emoji genérico
+  const imgFile  = imagen && imagen !== '-' ? imagen : '';
+  const logoFile = logo   && logo   !== '-' ? logo   : '';
+  const imgSrc   = imgFile || logoFile;
+  const imgHtml  = imgSrc
+    ? `<img src="${imgSrc}" alt="${nombre}" onerror="this.style.display='none';this.parentNode.innerHTML='🏷️'">`
     : '🏷️';
 
   // código row
-  const codigoHtml = codigo && codigo!=='-'
+  const codigoHtml = codigo && codigo !== '-'
     ? `<div class="copy-row">
         <span class="code-text">${codigo}</span>
         <button class="copy-btn" onclick="copyCode(this,'${codigo}')">Copiar</button>
        </div>`
-    : (url ? '' : '<p class="no-code">Sin código — usar enlace directo</p>');
+    : (url && url !== '-' ? '' : '<p class="no-code">Sin código — usar enlace directo</p>');
 
   // descuento/beneficio label
-  const beneficioHtml = descuento && descuento!==codigo
+  const beneficioHtml = descuento && descuento !== '-'
     ? `<div class="ref-discount">🎁 ${descuento}</div>`
     : '';
 
   // caducidad label
-  const cadHtml = caducidad && caducidad!=='-'
+  const cadHtml = caducidad && caducidad !== '-'
     ? `<div class="ref-caducidad">⏱ Válido hasta: ${caducidad}</div>`
     : '';
 
-  // bases
-  const basesHtml = bases && bases!=='-'
-    ? `<div class="ref-benefit">${bases}</div>`
+  // bases → nombre de fichero local que se abre al hacer clic (ej: "bases_revolut.pdf")
+  const basesHtml = bases && bases !== '-'
+    ? `<a href="${bases}" target="_blank" rel="noopener" class="bases-link">
+        📄 Ver bases y condiciones
+       </a>`
     : '';
 
   // tiktok link (solo redes)
-  const tiktokHtml = tiktok && tiktok!=='-'
-    ? `<a href="${tiktok}" target="_blank" class="ref-link-btn" style="background:#2c2c2a">Ver en TikTok →</a>`
+  const tiktokHtml = tiktok && tiktok !== '-'
+    ? `<a href="${tiktok}" target="_blank" rel="noopener" class="ref-link-btn" style="background:#2c2c2a">Ver en TikTok →</a>`
     : '';
 
   // url link
-  const urlHtml = url && url!=='-'
+  const urlHtml = url && url !== '-'
     ? `<a href="${url}" target="_blank" rel="noopener" class="ref-link-btn">Conseguir ahora →</a>`
     : '';
 
   div.innerHTML = `
     ${badge}
     <div class="ref-header">
-      <div class="ref-logo-wrap">${logoHtml}</div>
+      <div class="ref-logo-wrap">${imgHtml}</div>
       <div>
         <div class="ref-name">${nombre}</div>
         <div class="ref-type">${key==='bancos'?'Banco / Finanzas':key==='compras'?'Tienda / App':'Red Social'}</div>
       </div>
     </div>
-    ${basesHtml}
     ${beneficioHtml}
     ${cadHtml}
     ${codigoHtml}
+    ${basesHtml}
     ${tiktokHtml}
     ${urlHtml}
   `;
