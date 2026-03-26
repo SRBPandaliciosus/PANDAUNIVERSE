@@ -111,6 +111,16 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
   .field-row{grid-template-columns:1fr}
 }
 @media(max-width:540px){.section{padding:3rem 1.25rem}}
+
+/* MOBILE NAV */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:1px solid var(--border2);border-radius:10px;cursor:pointer;padding:0 9px;flex-shrink:0}
+.hamburger span{display:block;height:2px;background:var(--charcoal);border-radius:2px;transition:all 0.25s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(253,252,249,0.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:199;padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:0.25rem}
+.mobile-menu a{font-size:1rem;font-weight:600;color:var(--charcoal);text-decoration:none;padding:0.7rem 0.5rem;border-bottom:1px solid var(--border);display:block;transition:color 0.2s}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--sage)}
+.mobile-menu.open{display:flex}
+@media(max-width:860px){.hamburger{display:flex}}
 </style>
 </head>
 <body>
@@ -128,7 +138,18 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
     <a href="contacto.html" class="active">Contacto</a>
   </div>
   <a href="index.html#newsletter" class="nav-pill">Suscríbete</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menú" id="hamburgerBtn">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="recetas.html">Recetas</a>
+  <a href="chollos.html">Chollos</a>
+  <a href="tienda.html">Tienda</a>
+  <a href="referidos.html">Referidos</a>
+  <a href="contacto.html" class="active">Contacto</a>
+</div>
 
 <div class="page-header">
   <div class="eyebrow">Hablemos</div>
@@ -224,6 +245,12 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
           <input type="hidden" name="_subject" value="🐼 Nuevo mensaje en PandaUniverse">
           <input type="hidden" name="_language" value="es">
 
+          <div class="field" style="margin-bottom:1rem">
+            <label style="display:inline-flex;align-items:flex-start;gap:0.6rem;cursor:pointer;font-size:0.78rem;color:var(--mid);line-height:1.55;font-weight:400">
+              <input type="checkbox" id="contactConsent" name="consentimiento" style="margin-top:3px;flex-shrink:0;accent-color:#7a9e7e" required>
+              <span>He leído y acepto la <a href="privacidad.html" target="_blank" style="color:var(--sage)">Política de Privacidad</a>. Consiento el tratamiento de mis datos personales para gestionar mi consulta conforme al RGPD (UE) 2016/679 y la LOPDGDD (LO 3/2018). Mis datos no serán cedidos a terceros ni utilizados para otros fines.</span>
+            </label>
+          </div>
           <button type="submit" class="submit-btn" id="submitBtn">
             Enviar mensaje 🐼
           </button>
@@ -268,7 +295,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
   </div>
   <div class="footer-bottom">
     <span>© 2025 PandaUniverse · Hecho con 🐼</span>
-    <span><a href="#">Privacidad</a> · <a href="#">Aviso legal</a></span>
+    <span><a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a></span>
   </div>
 </footer>
 
@@ -280,9 +307,14 @@ function updateCount(el){
 const form = document.getElementById('contactForm');
 const btn  = document.getElementById('submitBtn');
 const box  = document.getElementById('successBox');
+const consent = document.getElementById('contactConsent');
 
 form.addEventListener('submit', async function(e){
   e.preventDefault();
+  if(!consent.checked){
+    consent.parentElement.style.color = '#c06040';
+    return;
+  }
   btn.disabled = true;
   btn.textContent = 'Enviando...';
 

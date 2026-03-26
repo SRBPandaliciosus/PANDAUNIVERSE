@@ -80,6 +80,16 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
 .footer-bottom a{color:rgba(253,252,249,0.28);text-decoration:none}
 @media(max-width:860px){nav{padding:0 1.25rem}.nav-center{display:none}.blog-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:540px){.blog-grid{grid-template-columns:1fr}.section{padding:3rem 1.25rem}}
+
+/* MOBILE NAV */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:1px solid var(--border2);border-radius:10px;cursor:pointer;padding:0 9px;flex-shrink:0}
+.hamburger span{display:block;height:2px;background:var(--charcoal);border-radius:2px;transition:all 0.25s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(253,252,249,0.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:199;padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:0.25rem}
+.mobile-menu a{font-size:1rem;font-weight:600;color:var(--charcoal);text-decoration:none;padding:0.7rem 0.5rem;border-bottom:1px solid var(--border);display:block;transition:color 0.2s}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--sage)}
+.mobile-menu.open{display:flex}
+@media(max-width:860px){.hamburger{display:flex}}
 </style>
 </head>
 <body>
@@ -92,10 +102,22 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
     <a href="referidos.html">Referidos</a>
   </div>
   <a href="index.html#newsletter" class="nav-pill">Suscríbete</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menú" id="hamburgerBtn">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="recetas.html">Recetas</a>
+  <a href="chollos.html" class="active">Chollos</a>
+  <a href="tienda.html">Tienda</a>
+  <a href="referidos.html">Referidos</a>
+  <a href="contacto.html">Contacto</a>
+</div>
 
 <div class="page-header">
   <div class="eyebrow">Pandachollo · Chollos & Finanzas</div>
+  <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin:0 auto 1.25rem;display:block;border:3px solid #d4e4d5">
   <h1>Ahorra más,<br><em>gana mejor</em></h1>
   <p>Los mejores chollos de internet, gangas increíbles y guías para que tu dinero rinda más. Porque encontrar un buen precio también es un arte. 🔥</p>
 </div>
@@ -111,7 +133,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
     <!-- CHOLLOS -->
     <div id="panel-chollos" class="tab-panel active">
       <div class="highlight">
-        <div class="hl-icon">🔥</div>
+        <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:56px;height:56px;border-radius:14px;object-fit:cover">
         <div class="hl-content">
           <div class="hl-label">Chollo de la semana</div>
           <div class="hl-title">Los mejores descuentos <em>curados por el panda</em></div>
@@ -179,7 +201,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
     <!-- FINANZAS -->
     <div id="panel-finanzas" class="tab-panel">
       <div class="highlight">
-        <div class="hl-icon">💸</div>
+        <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:56px;height:56px;border-radius:14px;object-fit:cover">
         <div class="hl-content">
           <div class="hl-label">Educación financiera</div>
           <div class="hl-title">Que tu dinero <em>trabaje por ti</em></div>
@@ -245,6 +267,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
     </div>
 
     <div class="social-cta">
+      <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:52px;height:52px;border-radius:50%;object-fit:cover;margin:0 auto 0.75rem;display:block">
       <h3>Todo esto y más en <em>Pandachollo</em></h3>
       <p>Chollos diarios, análisis financieros y los mejores códigos referido. Sígueme para no perderte ninguno.</p>
       <div class="soc-row" style="margin-bottom:0.75rem">
@@ -270,7 +293,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
   </div>
   <div class="footer-bottom">
     <span>© 2025 PandaUniverse · Hecho con 🐼</span>
-    <span><a href="#">Privacidad</a> · <a href="#">Aviso legal</a></span>
+    <span><a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a></span>
   </div>
 </footer>
 

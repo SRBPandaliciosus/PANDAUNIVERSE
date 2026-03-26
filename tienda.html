@@ -68,6 +68,16 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
 .footer-bottom a{color:rgba(253,252,249,0.28);text-decoration:none}
 @media(max-width:860px){nav{padding:0 1.25rem}.nav-center{display:none}.shop-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:540px){.shop-grid{grid-template-columns:1fr}.section{padding:3rem 1.25rem}}
+
+/* MOBILE NAV */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:1px solid var(--border2);border-radius:10px;cursor:pointer;padding:0 9px;flex-shrink:0}
+.hamburger span{display:block;height:2px;background:var(--charcoal);border-radius:2px;transition:all 0.25s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(253,252,249,0.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:199;padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:0.25rem}
+.mobile-menu a{font-size:1rem;font-weight:600;color:var(--charcoal);text-decoration:none;padding:0.7rem 0.5rem;border-bottom:1px solid var(--border);display:block;transition:color 0.2s}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--sage)}
+.mobile-menu.open{display:flex}
+@media(max-width:860px){.hamburger{display:flex}}
 </style>
 </head>
 <body>
@@ -80,10 +90,25 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
     <a href="referidos.html">Referidos</a>
   </div>
   <a href="index.html#newsletter" class="nav-pill">Suscríbete</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menú" id="hamburgerBtn">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="recetas.html">Recetas</a>
+  <a href="chollos.html">Chollos</a>
+  <a href="tienda.html" class="active">Tienda</a>
+  <a href="referidos.html">Referidos</a>
+  <a href="contacto.html">Contacto</a>
+</div>
 
 <div class="page-header">
   <div class="eyebrow">TikTok Shop · Sello panda</div>
+  <div style="display:flex;justify-content:center;gap:0.5rem;margin:0 auto 1.25rem">
+    <img src="PANDALICIOSUS.JPG" alt="Pandaliciosus" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid #f7ede8">
+    <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid #d4e4d5;margin-left:-12px">
+  </div>
   <h1>Productos con<br><em>sello panda</em></h1>
   <p>Solo recomiendo lo que yo mismo uso y me gusta. Selección honesta de productos de cocina, hogar, tecnología y bienestar. Con sello 🐼</p>
 </div>
@@ -100,14 +125,14 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
 
     <div class="brand-tabs">
       <button class="brand-tab active" onclick="switchBrand('todo',this)">🐼 Todo</button>
-      <button class="brand-tab" onclick="switchBrand('pandaliciosus',this)">🍜 Pandaliciosus</button>
-      <button class="brand-tab" onclick="switchBrand('pandachollo',this)">🔥 Pandachollo</button>
+      <button class="brand-tab" onclick="switchBrand('pandaliciosus',this)"><img src="PANDALICIOSUS.JPG" style="width:20px;height:20px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:4px"> Pandaliciosus</button>
+      <button class="brand-tab" onclick="switchBrand('pandachollo',this)"><img src="PANDACHOLLO.JPG" style="width:20px;height:20px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:4px"> Pandachollo</button>
     </div>
 
     <div id="panel-todo" class="tab-panel active">
       <div class="shop-grid">
         <div class="shop-card">
-          <div class="shop-thumb thumb-a">🍳<span class="brand-badge badge-panda">Pandaliciosus</span></div>
+          <div class="shop-thumb thumb-a" style="position:relative"><img src="PANDALICIOSUS.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-panda" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandaliciosus</span></div>
           <div class="shop-inner">
             <div class="shop-brand">Cocina · Utensilios</div>
             <div class="shop-title">Utensilios de cocina esenciales</div>
@@ -116,7 +141,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
           </div>
         </div>
         <div class="shop-card">
-          <div class="shop-thumb thumb-b">🥗<span class="brand-badge badge-panda">Pandaliciosus</span></div>
+          <div class="shop-thumb thumb-b" style="position:relative"><img src="PANDALICIOSUS.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-panda" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandaliciosus</span></div>
           <div class="shop-inner">
             <div class="shop-brand">Alimentación · Despensa</div>
             <div class="shop-title">Despensa panda saludable</div>
@@ -125,7 +150,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
           </div>
         </div>
         <div class="shop-card">
-          <div class="shop-thumb thumb-c">📦<span class="brand-badge badge-chollo">Pandachollo</span></div>
+          <div class="shop-thumb thumb-c" style="position:relative"><img src="PANDACHOLLO.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-chollo" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandachollo</span></div>
           <div class="shop-inner">
             <div class="shop-brand">Hogar · Organización</div>
             <div class="shop-title">Chollos de hogar top</div>
@@ -134,7 +159,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
           </div>
         </div>
         <div class="shop-card">
-          <div class="shop-thumb thumb-d">💻<span class="brand-badge badge-chollo">Pandachollo</span></div>
+          <div class="shop-thumb thumb-d" style="position:relative"><img src="PANDACHOLLO.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-chollo" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandachollo</span></div>
           <div class="shop-inner">
             <div class="shop-brand">Tecnología · Gadgets</div>
             <div class="shop-title">Gadgets y tecnología al mejor precio</div>
@@ -143,7 +168,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
           </div>
         </div>
         <div class="shop-card">
-          <div class="shop-thumb thumb-e">✨<span class="brand-badge badge-panda">Pandaliciosus</span></div>
+          <div class="shop-thumb thumb-e" style="position:relative"><img src="PANDALICIOSUS.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-panda" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandaliciosus</span></div>
           <div class="shop-inner">
             <div class="shop-brand">Bienestar · Cuidado personal</div>
             <div class="shop-title">Cuidado y bienestar con sello panda</div>
@@ -152,7 +177,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
           </div>
         </div>
         <div class="shop-card">
-          <div class="shop-thumb thumb-f">🔥<span class="brand-badge badge-chollo">Pandachollo</span></div>
+          <div class="shop-thumb thumb-f" style="position:relative"><img src="PANDACHOLLO.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-chollo" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandachollo</span></div>
           <div class="shop-inner">
             <div class="shop-brand">Destacado · Chollo semanal</div>
             <div class="shop-title">El chollo de la semana 🐼</div>
@@ -245,7 +270,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
   </div>
   <div class="footer-bottom">
     <span>© 2025 PandaUniverse · Hecho con 🐼</span>
-    <span><a href="#">Privacidad</a> · <a href="#">Aviso legal</a></span>
+    <span><a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a></span>
   </div>
 </footer>
 
