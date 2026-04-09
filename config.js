@@ -61,7 +61,7 @@ var CONFIG = {
 
   /* ── LEGAL ───────────────────────────────────────────────── */
   legal: {
-    anioActual:    '2025',
+    anioActual:    '2026',
     privacidadUrl: 'privacidad.html',
     avisoLegalUrl: 'aviso-legal.html',
   },
