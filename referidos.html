@@ -4,135 +4,167 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Códigos Referido | PandaUniverse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="main.css">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#fdfcf9;--bg2:#f7f5f0;
-  --sage:#7a9e7e;--sage-lt:#d4e4d5;--sage-pal:#edf5ee;
-  --blush:#e8c4b8;--blush-lt:#f7ede8;
-  --butter:#f0d98c;--butter-lt:#fdf6dc;
-  --sky-lt:#e8f3f9;--lav-lt:#f0edf9;
-  --charcoal:#2c2c2a;--mid:#6b6b66;--light:#a8a89e;
-  --border:rgba(44,44,42,0.08);--border2:rgba(44,44,42,0.14);
-}
-html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--charcoal);overflow-x:hidden;font-size:15px;line-height:1.6}
-::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--sage-lt);border-radius:3px}
+/* ── Estilos exclusivos de referidos.html ── */
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;background:rgba(253,252,249,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.logo{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--charcoal);text-decoration:none;display:flex;align-items:center;gap:0.5rem}
-.logo-panda{width:34px;height:34px;background:var(--charcoal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
-.logo em{font-style:italic;color:var(--sage);font-weight:300}
-.nav-center{display:flex;gap:0.25rem}
-.nav-center a{font-size:0.82rem;font-weight:500;color:var(--mid);text-decoration:none;padding:0.4rem 0.9rem;border-radius:100px;transition:background 0.2s,color 0.2s}
-.nav-center a:hover,.nav-center a.active{background:var(--bg2);color:var(--charcoal)}
-.nav-pill{background:var(--charcoal);color:var(--bg)!important;padding:0.45rem 1.1rem;border-radius:100px;font-size:0.82rem;font-weight:500;text-decoration:none;transition:background 0.2s,transform 0.15s!important}
-.nav-pill:hover{background:var(--sage)!important;transform:scale(1.04)}
+.page-header { background: var(--bg2); }
 
-/* PAGE HEADER */
-.page-header{padding:7rem 2rem 3rem;text-align:center;background:var(--bg2);border-bottom:1px solid var(--border)}
-.eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);margin-bottom:0.75rem}
-.page-header h1{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:0.75rem}
-.page-header h1 em{font-style:italic;font-weight:300;color:var(--sage)}
-.page-header p{color:var(--mid);max-width:520px;margin:0 auto;line-height:1.8}
-.wrap{max-width:1080px;margin:0 auto}
-.section{padding:4rem 2rem}
-
-/* TABS */
-.tab-bar{display:flex;gap:0.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem;flex-wrap:wrap}
-.tab-btn{padding:0.65rem 1.3rem;border-radius:12px 12px 0 0;font-size:0.83rem;font-weight:600;cursor:pointer;border:1px solid transparent;border-bottom:none;color:var(--mid);background:transparent;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s}
-.tab-btn.active{background:var(--bg);color:var(--charcoal);border-color:var(--border);border-bottom-color:var(--bg);margin-bottom:-1px}
-.tab-panel{display:none}
-.tab-panel.active{display:block}
-
-/* GRID */
-.ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-
-/* SKELETON */
-.skeleton-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-.skel{background:var(--bg2);border-radius:20px;height:300px;animation:pulse 1.5s ease infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
-
-/* ERROR */
-.error-box{background:var(--blush-lt);border:1px solid var(--blush);border-radius:16px;padding:2rem;text-align:center;color:#8a4030}
-.error-box h3{font-family:'Fraunces',serif;margin-bottom:0.5rem}
-
-/* EMPTY */
-.empty-box{text-align:center;padding:4rem 2rem;color:var(--mid)}
-.empty-box .emoji{font-size:3rem;margin-bottom:1rem}
-
-/* REF CARD */
-.ref-card{border-radius:20px;border:1px solid var(--border);padding:1.5rem;background:var(--bg);transition:transform 0.25s,border-color 0.2s,box-shadow 0.25s;position:relative;display:flex;flex-direction:column;gap:0.6rem}
-.ref-card:hover{transform:translateY(-4px);border-color:var(--sage-lt);box-shadow:0 12px 28px rgba(44,44,42,0.07)}
-.ref-expired{opacity:0.55}
-.ref-badge{position:absolute;top:1rem;right:1rem;padding:0.15rem 0.65rem;border-radius:100px;font-size:0.65rem;font-weight:700}
-.badge-new{background:var(--butter-lt);color:#7a5e00}
-.badge-exp{background:#fee2e2;color:#991b1b}
-.ref-logo-wrap{width:48px;height:48px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--bg2);font-size:1.6rem;flex-shrink:0}
-.ref-logo-wrap img{width:100%;height:100%;object-fit:contain}
-.ref-header{display:flex;align-items:center;gap:0.75rem}
-.ref-name{font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
-.ref-type{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--light)}
-.ref-benefit{font-size:0.82rem;color:var(--mid);line-height:1.6}
-.ref-discount{font-size:0.9rem;font-weight:700;color:var(--sage)}
-.ref-caducidad{font-size:0.72rem;color:var(--light)}
-.copy-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border-radius:10px;padding:0.5rem 0.75rem}
-.code-text{font-family:monospace;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;color:var(--charcoal)}
-.copy-btn{font-size:0.7rem;font-weight:700;color:var(--sage);background:none;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;padding:0.2rem 0.5rem;border-radius:6px;transition:background 0.15s}
-.copy-btn:hover{background:var(--sage-lt)}
-.ref-link-btn{display:block;text-align:center;background:var(--charcoal);color:var(--bg);border-radius:100px;padding:0.55rem 1rem;font-size:0.78rem;font-weight:600;text-decoration:none;transition:background 0.2s;margin-top:auto}
-.ref-link-btn:hover{background:var(--sage)}
-.no-code{font-size:0.75rem;color:var(--light);font-style:italic;text-align:center}
-.bases-link{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.75rem;font-weight:600;color:var(--mid);text-decoration:none;padding:0.3rem 0;border-bottom:1px dashed var(--border2);transition:color 0.2s,border-color 0.2s}
-.bases-link:hover{color:var(--sage);border-color:var(--sage)}
-
-/* DISCLAIMER */
-.disclaimer{margin-top:2.5rem;padding:1rem 1.25rem;background:var(--bg2);border-radius:12px;font-size:0.75rem;color:var(--light);text-align:center;line-height:1.7}
-
-/* FOOTER */
-footer{background:var(--charcoal);padding:3rem 2rem 1.5rem}
-.footer-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.f-logo{color:#fdfcf9;margin-bottom:0.75rem}
-.f-logo em{color:var(--sage-lt)}
-.f-desc{font-size:0.82rem;color:rgba(253,252,249,0.45);line-height:1.7;max-width:240px}
-.f-col h5{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(253,252,249,0.4);margin-bottom:1rem}
-.f-col ul{list-style:none}
-.f-col li{margin-bottom:0.55rem}
-.f-col a{color:rgba(253,252,249,0.55);font-size:0.82rem;text-decoration:none;transition:color 0.2s}
-.f-col a:hover{color:var(--sage-lt)}
-.footer-bottom{max-width:1080px;margin:0 auto;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:rgba(253,252,249,0.28);flex-wrap:wrap;gap:0.5rem}
-.footer-bottom a{color:rgba(253,252,249,0.28);text-decoration:none}
-.footer-bottom a:hover{color:var(--sage-lt)}
-
-@media(max-width:860px){
-  nav{padding:0 1.25rem}.nav-center{display:none}
-  .ref-grid,.skeleton-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:540px){
-  .ref-grid,.skeleton-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .section{padding:3rem 1.25rem}
+.ref-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
 }
 
-/* MOBILE NAV */
-.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:1px solid var(--border2);border-radius:10px;cursor:pointer;padding:0 9px;flex-shrink:0}
-.hamburger span{display:block;height:2px;background:var(--charcoal);border-radius:2px;transition:all 0.25s}
-.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(253,252,249,0.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:199;padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:0.25rem}
-.mobile-menu a{font-size:1rem;font-weight:600;color:var(--charcoal);text-decoration:none;padding:0.7rem 0.5rem;border-bottom:1px solid var(--border);display:block;transition:color 0.2s}
-.mobile-menu a:last-child{border-bottom:none}
-.mobile-menu a:hover,.mobile-menu a.active{color:var(--sage)}
-.mobile-menu.open{display:flex}
-@media(max-width:860px){.hamburger{display:flex}}
+/* Skeleton de carga */
+.skel {
+  background: var(--bg2);
+  border-radius: var(--radius-lg);
+  height: 300px;
+  animation: pulse 1.5s ease infinite;
+}
+@keyframes pulse { 0%,100% {opacity:1} 50% {opacity:0.5} }
+
+/* Tarjeta referido */
+.ref-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  background: var(--bg);
+  transition: transform 0.25s, border-color 0.2s, box-shadow 0.25s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.ref-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sage-lt);
+  box-shadow: 0 12px 28px rgba(44,44,42,0.07);
+}
+.ref-expired { opacity: 0.55; }
+
+.ref-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.15rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+.badge-new { background: var(--butter-lt); color: #7a5e00; }
+.badge-exp { background: #fee2e2; color: #991b1b; }
+
+.ref-logo-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg2);
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+.ref-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+
+.ref-header { display: flex; align-items: center; gap: 0.75rem; }
+.ref-name { font-family: var(--font-display); font-weight: 700; font-size: 1rem; }
+.ref-type { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); }
+.ref-discount { font-size: 0.9rem; font-weight: 700; color: var(--sage); }
+.ref-caducidad { font-size: 0.72rem; color: var(--light); }
+
+.copy-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg2);
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+}
+.code-text { font-family: monospace; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; color: var(--charcoal); }
+.copy-btn {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--sage);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.copy-btn:hover { background: var(--sage-lt); }
+
+.bases-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--mid);
+  text-decoration: none;
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed var(--border2);
+  transition: color 0.2s, border-color 0.2s;
+}
+.bases-link:hover { color: var(--sage); border-color: var(--sage); }
+
+.ref-link-btn {
+  display: block;
+  text-align: center;
+  background: var(--charcoal);
+  color: var(--bg);
+  border-radius: var(--radius-pill);
+  padding: 0.55rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+  margin-top: auto;
+}
+.ref-link-btn:hover { background: var(--sage); }
+
+.no-code { font-size: 0.75rem; color: var(--light); font-style: italic; text-align: center; }
+
+.error-box {
+  background: var(--blush-lt);
+  border: 1px solid var(--blush);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  text-align: center;
+  color: #8a4030;
+}
+.error-box h3 { font-family: var(--font-display); margin-bottom: 0.5rem; }
+
+.empty-box { text-align: center; padding: 4rem 2rem; color: var(--mid); }
+.empty-box .emoji { font-size: 3rem; margin-bottom: 1rem; }
+
+.disclaimer {
+  margin-top: 2.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg2);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: var(--light);
+  text-align: center;
+  line-height: 1.7;
+}
+
+@media (max-width: 860px) { .ref-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .ref-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="logo">
-    <img src="PANDALICIOSUS.JPG" alt="PandaUniverse" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+    <img src="PANDALICIOSUS.JPG" alt="PandaUniverse">
     Panda<em>Universe</em>
   </a>
   <div class="nav-center">
@@ -147,60 +179,59 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem}
     <span></span><span></span><span></span>
   </button>
 </nav>
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-    <a href="recetas.html">Recetas</a>
+  <a href="recetas.html">Recetas</a>
   <a href="chollos.html">Chollos</a>
   <a href="tienda.html">Tienda</a>
   <a href="referidos.html" class="active">Referidos</a>
   <a href="contacto.html">Contacto</a>
 </div>
 
-<div class="page-header">
-  <div class="eyebrow">Códigos & Planes amigo</div>
-  <h1>Gana dinero desde<br><em>el primer día</em></h1>
-  <p>Bancos, apps y redes sociales con códigos de referido. Úsalos, ganas tú. Los dos salimos ganando. 🐼</p>
+<div class="page-header" style="background:var(--bg2)">
+  <div class="wrap">
+    <span class="eyebrow">Códigos & Planes amigo</span>
+    <h1>Gana dinero desde<br><em>el primer día</em></h1>
+    <p>Bancos, apps y redes sociales con códigos de referido. Úsalos y ganamos los dos. 🐼</p>
+  </div>
 </div>
 
 <section class="section">
   <div class="wrap">
+    <!-- Pestañas: los IDs deben coincidir con CONFIG.googleSheet.hojas -->
     <div class="tab-bar">
-      <button class="tab-btn active" onclick="switchTab('bancos',this)">🏦 Bancos</button>
-      <button class="tab-btn" onclick="switchTab('compras',this)">🛒 Compras</button>
-      <button class="tab-btn" onclick="switchTab('redes',this)">📱 Redes Sociales</button>
+      <button class="tab-btn active" onclick="switchTabReferidos('bancos',  this)">🏦 Bancos</button>
+      <button class="tab-btn"        onclick="switchTabReferidos('compras', this)">🛒 Compras</button>
+      <button class="tab-btn"        onclick="switchTabReferidos('redes',   this)">📱 Redes Sociales</button>
     </div>
 
-    <div id="panel-bancos" class="tab-panel active">
-      <div id="grid-bancos" class="ref-grid">
-        <div class="skeleton-grid" style="display:contents">
-          <div class="skel"></div><div class="skel"></div><div class="skel"></div>
-        </div>
-      </div>
-    </div>
-    <div id="panel-compras" class="tab-panel">
-      <div id="grid-compras" class="ref-grid"></div>
-    </div>
-    <div id="panel-redes" class="tab-panel">
-      <div id="grid-redes" class="ref-grid"></div>
-    </div>
+    <div id="panel-bancos"  class="tab-panel active"><div id="grid-bancos"  class="ref-grid"></div></div>
+    <div id="panel-compras" class="tab-panel">       <div id="grid-compras" class="ref-grid"></div></div>
+    <div id="panel-redes"   class="tab-panel">       <div id="grid-redes"   class="ref-grid"></div></div>
 
-    <p class="disclaimer">* Algunos enlaces pueden contener códigos de afiliado o referido. Las condiciones de cada oferta pueden cambiar sin previo aviso. Consulta siempre los términos en la página oficial de cada producto.</p>
+    <p class="disclaimer">
+      * Algunos enlaces pueden contener códigos de afiliado o referido.
+      Las condiciones de cada oferta pueden cambiar sin previo aviso.
+      Consulta siempre los términos en la página oficial de cada producto.
+    </p>
   </div>
 </section>
 
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="f-logo logo"><img src="PANDALICIOSUS.JPG" alt="PandaUniverse" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;">Panda<em>Universe</em></div>
+      <a href="index.html" class="f-logo">
+        <img src="PANDALICIOSUS.JPG" alt="PandaUniverse">
+        Panda<em>Universe</em>
+      </a>
       <p class="f-desc">Dos marcas, un espíritu. Recetas, chollos, finanzas y TikTok Shop con sello panda.</p>
     </div>
     <div class="f-col">
       <h5>Pandaliciosus</h5>
       <ul>
         <li><a href="recetas.html">Blog de recetas</a></li>
-        <li><a href="https://www.tiktok.com/@pandaliciosus" target="_blank">TikTok</a></li>
-        <li><a href="https://www.instagram.com/pandaliciosus" target="_blank">Instagram</a></li>
-        <li><a href="https://www.youtube.com/@pandaliciosus" target="_blank">YouTube</a></li>
+        <li><a href="https://www.tiktok.com/@pandaliciosus" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.instagram.com/pandaliciosus" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@pandaliciosus" target="_blank" rel="noopener">YouTube</a></li>
       </ul>
     </div>
     <div class="f-col">
@@ -208,8 +239,8 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem}
       <ul>
         <li><a href="chollos.html">Blog de chollos</a></li>
         <li><a href="referidos.html">Códigos referido</a></li>
-        <li><a href="https://www.tiktok.com/@pandachollo" target="_blank">TikTok</a></li>
-        <li><a href="https://www.youtube.com/@pandachollo" target="_blank">YouTube</a></li>
+        <li><a href="https://www.tiktok.com/@pandachollo" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.youtube.com/@pandachollo" target="_blank" rel="noopener">YouTube</a></li>
       </ul>
     </div>
     <div class="f-col">
@@ -217,7 +248,7 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem}
       <ul>
         <li><a href="contacto.html">Formulario de contacto</a></li>
         <li><a href="contacto.html">Colaboraciones</a></li>
-        <li><a href="index.html">Inicio</a></li>
+        <li><a href="contacto.html">Sobre mí</a></li>
       </ul>
     </div>
   </div>
@@ -227,176 +258,8 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem}
   </div>
 </footer>
 
-
-<script>
-/* ── HAMBURGER ── */
-function toggleMenu(){
-  var m = document.getElementById('mobileMenu');
-  var b = document.getElementById('hamburgerBtn');
-  if(!m || !b) return;
-  var open = m.classList.toggle('open');
-  var spans = b.querySelectorAll('span');
-  if(open){
-    spans[0].style.transform='rotate(45deg) translate(5px,5px)';
-    spans[1].style.opacity='0';
-    spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
-  } else {
-    spans[0].style.transform='';
-    spans[1].style.opacity='1';
-    spans[2].style.transform='';
-  }
-}
-document.addEventListener('click', function(e){
-  var m = document.getElementById('mobileMenu');
-  var b = document.getElementById('hamburgerBtn');
-  if(!m || !b) return;
-  if(!m.contains(e.target) && !b.contains(e.target)){
-    m.classList.remove('open');
-    var spans = b.querySelectorAll('span');
-    spans[0].style.transform=''; spans[1].style.opacity='1'; spans[2].style.transform='';
-  }
-});
-
-/* ── TABS ── */
-function switchTab(key, btn){
-  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById('panel-'+key).classList.add('active');
-  loadSheet(key);
-}
-/* ── COPY CODE ── */
-function copyCode(btn, code){
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(code).then(function(){
-      var orig = btn.textContent;
-      btn.textContent = '✓'; btn.style.color='#7a9e7e';
-      setTimeout(function(){ btn.textContent=orig; btn.style.color=''; }, 2000);
-    });
-  } else {
-    var ta = document.createElement('textarea');
-    ta.value = code; document.body.appendChild(ta); ta.select();
-    document.execCommand('copy'); document.body.removeChild(ta);
-    var orig = btn.textContent;
-    btn.textContent = '✓'; btn.style.color='#7a9e7e';
-    setTimeout(function(){ btn.textContent=orig; btn.style.color=''; }, 2000);
-  }
-}
-
-/* ── GOOGLE SHEETS LOADER ── */
-var SHEET_ID = '1KD9z_lI3ZTIanqxEwZTuQizOj4WgObw19tebtAcCSBY';
-var SHEETS_CFG = {
-  bancos:  { name: 'Bancos',        cols: ['nombre','codigo','descuento','caducidad','imagen','url','bases','logo'] },
-  compras: { name: 'Compras',       cols: ['nombre','codigo','descuento','caducidad','imagen','url','bases','logo'] },
-  redes:   { name: 'RedesSociales', cols: ['nombre','codigo','descuento','caducidad','imagen','url','bases','tiktok','logo'] },
-};
-var loaded = {};
-
-function csvUrl(sheetName){
-  return 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(sheetName);
-}
-
-function loadSheet(key){
-  if(loaded[key]) return;
-  var cfg = SHEETS_CFG[key];
-  var grid = document.getElementById('grid-'+key);
-  if(!grid) return;
-  grid.innerHTML = '<div style="display:contents"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>';
-  fetch(csvUrl(cfg.name))
-    .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); return res.text(); })
-    .then(function(text){
-      var rows = parseCSV(text);
-      if(rows.length <= 1){ grid.innerHTML = emptyHTML(); loaded[key]=true; return; }
-      var data = rows.slice(1);
-      grid.innerHTML = '';
-      var count = 0;
-      data.forEach(function(row){
-        if(!row[0] || row[0].trim()==='') return;
-        grid.appendChild(buildCard(row, key, cfg));
-        count++;
-      });
-      if(count===0) grid.innerHTML = emptyHTML();
-      loaded[key] = true;
-    })
-    .catch(function(e){ grid.innerHTML = errorHTML(e.message); });
-}
-
-function parseCSV(text){
-  var rows=[],inQ=false,cell='',row=[];
-  for(var i=0;i<text.length;i++){
-    var ch=text[i];
-    if(ch==='"'){ if(inQ&&text[i+1]==='"'){cell+='"';i++;}else{inQ=!inQ;} }
-    else if(ch===','&&!inQ){ row.push(cell.trim());cell=''; }
-    else if((ch==='\n'||ch==='\r')&&!inQ){
-      if(ch==='\r'&&text[i+1]==='\n') i++;
-      row.push(cell.trim());rows.push(row);row=[];cell='';
-    } else { cell+=ch; }
-  }
-  if(cell||row.length){ row.push(cell.trim());rows.push(row); }
-  return rows;
-}
-
-function buildCard(row, key, cfg){
-  function get(name){
-    var idx=cfg.cols.indexOf(name);
-    return (idx>=0&&row[idx])?row[idx].trim():'';
-  }
-  var nombre=get('nombre'), codigo=get('codigo'), descuento=get('descuento');
-  var caducidad=get('caducidad'), imagen=get('imagen'), logo=get('logo');
-  var url=get('url'), bases=get('bases'), tiktok=get('tiktok');
-
-  var expired=false, daysLeft=null;
-  if(caducidad&&caducidad!=='-'){
-    var parts=caducidad.split('/');
-    var expDate = parts.length===3 ? new Date(parts[2],parts[1]-1,parts[0]) : new Date(caducidad);
-    if(!isNaN(expDate)){
-      var diff=expDate-new Date();
-      expired=diff<0;
-      daysLeft=Math.ceil(diff/(1000*60*60*24));
-    }
-  }
-
-  var div=document.createElement('div');
-  div.className='ref-card'+(expired?' ref-expired':'');
-
-  var badge='';
-  if(expired) badge='<span class="ref-badge badge-exp">Caducado</span>';
-  else if(daysLeft!==null&&daysLeft<=7) badge='<span class="ref-badge badge-new">Caduca en '+daysLeft+'d</span>';
-
-  var imgSrc=imagen&&imagen!=='-'?imagen:(logo&&logo!=='-'?logo:'');
-  var imgHtml=imgSrc
-    ?'<img src="'+imgSrc+'" alt="'+nombre+'" onerror="this.style.display=\'none\';this.parentNode.innerHTML=\'🏷️\'">'
-    :'🏷️';
-
-  var codigoHtml=codigo&&codigo!=='-'
-    ?'<div class="copy-row"><span class="code-text">'+codigo+'</span><button class="copy-btn" onclick="copyCode(this,''+codigo+'')">Copiar</button></div>'
-    :(url&&url!=='-'?'':'<p class="no-code">Sin código — usar enlace directo</p>');
-
-  var beneficioHtml=descuento&&descuento!=='-'?'<div class="ref-discount">🎁 '+descuento+'</div>':'';
-  var cadHtml=caducidad&&caducidad!=='-'?'<div class="ref-caducidad">⏱ Válido hasta: '+caducidad+'</div>':'';
-  var basesHtml=bases&&bases!=='-'
-    ?'<a href="'+bases+'" target="_blank" rel="noopener" class="bases-link">📄 Ver bases y condiciones</a>'
-    :'';
-  var tiktokHtml=tiktok&&tiktok!=='-'
-    ?'<a href="'+tiktok+'" target="_blank" rel="noopener" class="ref-link-btn" style="background:#2c2c2a">Ver en TikTok →</a>'
-    :'';
-  var urlHtml=url&&url!=='-'
-    ?'<a href="'+url+'" target="_blank" rel="noopener" class="ref-link-btn">Conseguir ahora →</a>'
-    :'';
-  var typeLabel=key==='bancos'?'Banco / Finanzas':key==='compras'?'Tienda / App':'Red Social';
-
-  div.innerHTML=badge+
-    '<div class="ref-header"><div class="ref-logo-wrap">'+imgHtml+'</div>'+
-    '<div><div class="ref-name">'+nombre+'</div><div class="ref-type">'+typeLabel+'</div></div></div>'+
-    beneficioHtml+cadHtml+codigoHtml+basesHtml+tiktokHtml+urlHtml;
-  return div;
-}
-
-function emptyHTML(){ return '<div class="empty-box" style="grid-column:1/-1"><div class="emoji">🐼</div><p>Aún no hay entradas en esta sección. ¡Pronto habrá chollos!</p></div>'; }
-function errorHTML(msg){ return '<div class="error-box" style="grid-column:1/-1"><h3>No se pudieron cargar los datos</h3><p>Asegúrate de que el Google Sheet es público (Archivo → Compartir → Publicar en la web → CSV).<br><small>'+msg+'</small></p></div>'; }
-
-/* Load first tab on page ready */
-loadSheet('bancos');
-</script>
+<script src="config.js"></script>
+<script src="main.js"></script>
+<script src="referidos.js"></script>
 </body>
 </html>

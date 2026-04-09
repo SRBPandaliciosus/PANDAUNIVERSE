@@ -1,0 +1,727 @@
+/* ============================================================
+   PANDAUNIVERSE · MAIN.CSS
+   Estilos compartidos por todas las páginas del sitio.
+   Estructura:
+     1. Variables CSS (colores, tipografía, espaciado)
+     2. Reset y base
+     3. Scrollbar
+     4. Tipografía (Fraunces + Plus Jakarta Sans)
+     5. Navegación desktop
+     6. Navegación mobile (hamburger)
+     7. Footer
+     8. Componentes reutilizables (botones, badges, chips)
+     9. Animaciones compartidas
+    10. Media queries globales
+   ============================================================ */
+
+
+/* ── 1. VARIABLES ─────────────────────────────────────────── */
+:root {
+  /* Colores de fondo */
+  --bg:         #fdfcf9;
+  --bg2:        #f7f5f0;
+  --bg3:        #f0ede6;
+
+  /* Paleta principal: sage (verde) */
+  --sage:       #7a9e7e;
+  --sage-lt:    #d4e4d5;
+  --sage-pal:   #edf5ee;
+
+  /* Paleta secundaria: blush (rosa) */
+  --blush:      #e8c4b8;
+  --blush-lt:   #f7ede8;
+
+  /* Paleta terciaria: butter (amarillo) */
+  --butter:     #f0d98c;
+  --butter-lt:  #fdf6dc;
+
+  /* Paleta auxiliar: sky (azul) y lavender */
+  --sky-lt:     #e8f3f9;
+  --lav-lt:     #f0edf9;
+
+  /* Escala de grises */
+  --charcoal:   #2c2c2a;
+  --mid:        #6b6b66;
+  --light:      #a8a89e;
+
+  /* Bordes */
+  --border:     rgba(44, 44, 42, 0.08);
+  --border2:    rgba(44, 44, 42, 0.14);
+
+  /* Tipografía */
+  --font-display: 'Fraunces', serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+
+  /* Espaciado base */
+  --nav-height:  64px;
+  --wrap-width:  1080px;
+  --radius-sm:   10px;
+  --radius-md:   16px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+  --radius-pill: 100px;
+}
+
+
+/* ── 2. RESET Y BASE ─────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+
+/* ── 3. SCROLLBAR ────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg2); }
+::-webkit-scrollbar-thumb  { background: var(--sage-lt); border-radius: 3px; }
+
+
+/* ── 4. TIPOGRAFÍA ───────────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display);
+}
+
+em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sage);
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.section-h {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.section-p {
+  color: var(--mid);
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+
+/* ── 5. NAVEGACIÓN DESKTOP ───────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: var(--nav-height);
+  background: rgba(253, 252, 249, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.logo img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.logo em {
+  font-style: italic;
+  color: var(--sage);
+  font-weight: 300;
+}
+
+.nav-center {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.nav-center a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--mid);
+  text-decoration: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-pill);
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-center a:hover,
+.nav-center a.active {
+  background: var(--bg2);
+  color: var(--charcoal);
+}
+
+.nav-pill {
+  background: var(--charcoal);
+  color: var(--bg) !important;
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.nav-pill:hover {
+  background: var(--sage) !important;
+  transform: scale(1.04);
+}
+
+
+/* ── 6. NAVEGACIÓN MOBILE (hamburger) ────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  background: none;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  padding: 0 9px;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--charcoal);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0; right: 0;
+  background: rgba(253, 252, 249, 0.98);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 199;
+  padding: 1rem 1.5rem 1.5rem;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobile-menu a {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  text-decoration: none;
+  padding: 0.7rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  display: block;
+  transition: color 0.2s;
+}
+
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active {
+  color: var(--sage);
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+
+/* ── 7. FOOTER ───────────────────────────────────────────── */
+footer {
+  background: var(--charcoal);
+  padding: 3rem 2rem 1.5rem;
+}
+
+.footer-grid {
+  max-width: var(--wrap-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.f-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fdfcf9;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.f-logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.f-logo em {
+  color: var(--sage-lt);
+}
+
+.f-desc {
+  font-size: 0.82rem;
+  color: rgba(253, 252, 249, 0.45);
+  line-height: 1.7;
+  max-width: 240px;
+}
+
+.f-col h5 {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(253, 252, 249, 0.4);
+  margin-bottom: 1rem;
+}
+
+.f-col ul {
+  list-style: none;
+}
+
+.f-col li {
+  margin-bottom: 0.55rem;
+}
+
+.f-col a {
+  color: rgba(253, 252, 249, 0.55);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.f-col a:hover {
+  color: var(--sage-lt);
+}
+
+.footer-bottom {
+  max-width: var(--wrap-width);
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: rgba(253, 252, 249, 0.28);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer-bottom a {
+  color: rgba(253, 252, 249, 0.28);
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  color: var(--sage-lt);
+}
+
+
+/* ── 8. COMPONENTES REUTILIZABLES ────────────────────────── */
+
+/* Wrapper centrado */
+.wrap {
+  max-width: var(--wrap-width);
+  margin: 0 auto;
+}
+
+/* Sección genérica */
+.section {
+  padding: 4rem 2rem;
+}
+
+/* Cabecera de página secundaria */
+.page-header {
+  padding: 7rem 2rem 3rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.page-header p {
+  color: var(--mid);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Botones */
+.btn-dark {
+  background: var(--charcoal);
+  color: var(--bg);
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-dark:hover {
+  background: var(--sage);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  border: 1.5px solid var(--border2);
+  color: var(--charcoal);
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.15s, background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  border-color: var(--sage);
+  background: var(--sage-pal);
+  transform: translateY(-2px);
+}
+
+/* Social chips (hero) */
+.soc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--border2);
+  background: var(--bg);
+  color: var(--mid);
+  transition: transform 0.15s, border-color 0.2s;
+}
+
+.soc-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--charcoal);
+  color: var(--charcoal);
+}
+
+.soc-chip svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+/* Social buttons (cards) */
+.s-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.38rem 0.9rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.15s, opacity 0.2s;
+}
+
+.s-btn:hover { transform: scale(1.05); opacity: 0.88; }
+
+.s-tiktok { background: var(--charcoal); }
+.s-ig     { background: #d62976; }
+.s-yt     { background: #cc0000; }
+.s-pin    { background: #e60023; }
+
+/* Tags (brand cards) */
+.tag {
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 500;
+  border: 1px solid var(--border2);
+  color: var(--mid);
+}
+
+/* Tabs (blog/referidos) */
+.tab-bar {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 0.65rem 1.3rem;
+  border-radius: 12px 12px 0 0;
+  font-size: 0.83rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-bottom: none;
+  color: var(--mid);
+  background: transparent;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background: var(--bg);
+  color: var(--charcoal);
+  border-color: var(--border);
+  border-bottom-color: var(--bg);
+  margin-bottom: -1px;
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Blog / shop grid compartida */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* "Próximamente" badge */
+.soon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--sage-pal);
+  color: var(--sage);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+/* Formulario compartido (newsletter + contacto) */
+.form-field {
+  margin-bottom: 1.25rem;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border2);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  background: var(--bg2);
+  color: var(--charcoal);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  appearance: none;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--sage);
+  background: var(--bg);
+}
+
+.form-field textarea {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Consentimiento LOPD */
+.consent-label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: var(--mid);
+  line-height: 1.55;
+}
+
+.consent-label input[type="checkbox"] {
+  margin-top: 3px;
+  flex-shrink: 0;
+  accent-color: var(--sage);
+  width: auto;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.consent-label a {
+  color: var(--sage);
+  text-decoration: none;
+}
+
+.consent-label a:hover {
+  text-decoration: underline;
+}
+
+.consent-error {
+  color: #c06040 !important;
+}
+
+/* Newsletter section */
+.nl-section {
+  background: var(--sage-pal);
+  border-top: 1px solid var(--sage-lt);
+  border-bottom: 1px solid var(--sage-lt);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.nl-panda { font-size: 3.5rem; margin-bottom: 1.5rem; }
+
+.nl-form {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 460px;
+  margin: 1.5rem auto 0;
+}
+
+.nl-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border2);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  background: var(--bg);
+  color: var(--charcoal);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.nl-input:focus { border-color: var(--sage); }
+
+.nl-btn {
+  background: var(--charcoal);
+  color: var(--bg);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.nl-btn:hover { background: var(--sage); transform: scale(1.03); }
+.nl-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.nl-note {
+  margin-top: 0.6rem;
+  font-size: 0.72rem;
+  color: var(--light);
+}
+
+
+/* ── 9. ANIMACIONES ──────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.anim-1 { animation: fadeUp 0.5s 0.0s ease both; }
+.anim-2 { animation: fadeUp 0.6s 0.1s ease both; }
+.anim-3 { animation: fadeUp 0.6s 0.2s ease both; }
+.anim-4 { animation: fadeUp 0.6s 0.3s ease both; }
+.anim-5 { animation: fadeUp 0.6s 0.4s ease both; }
+.anim-6 { animation: fadeUp 0.6s 0.5s ease both; }
+
+
+/* ── 10. MEDIA QUERIES GLOBALES ──────────────────────────── */
+@media (max-width: 860px) {
+  nav { padding: 0 1.25rem; }
+  .nav-center { display: none; }
+  .hamburger { display: flex; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .card-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 540px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .card-grid { grid-template-columns: 1fr; }
+  .section { padding: 3rem 1.25rem; }
+}

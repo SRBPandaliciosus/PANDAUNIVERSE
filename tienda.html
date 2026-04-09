@@ -4,99 +4,61 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tienda Panda | PandaUniverse · TikTok Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="main.css">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#fdfcf9;--bg2:#f7f5f0;--sage:#7a9e7e;--sage-lt:#d4e4d5;--sage-pal:#edf5ee;--blush-lt:#f7ede8;--butter:#f0d98c;--butter-lt:#fdf6dc;--sky-lt:#e8f3f9;--lav-lt:#f0edf9;--charcoal:#2c2c2a;--mid:#6b6b66;--light:#a8a89e;--border:rgba(44,44,42,0.08);--border2:rgba(44,44,42,0.14)}
-html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--charcoal);overflow-x:hidden;font-size:15px;line-height:1.6}
-::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--sage-lt);border-radius:3px}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;background:rgba(253,252,249,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.logo{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--charcoal);text-decoration:none;display:flex;align-items:center;gap:0.5rem}
-.logo-panda{width:34px;height:34px;background:var(--charcoal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
-.logo em{font-style:italic;color:var(--sage);font-weight:300}
-.nav-center{display:flex;gap:0.25rem}
-.nav-center a{font-size:0.82rem;font-weight:500;color:var(--mid);text-decoration:none;padding:0.4rem 0.9rem;border-radius:100px;transition:background 0.2s,color 0.2s}
-.nav-center a:hover,.nav-center a.active{background:var(--bg2);color:var(--charcoal)}
-.nav-pill{background:var(--charcoal);color:var(--bg)!important;padding:0.45rem 1.1rem;border-radius:100px;font-size:0.82rem;font-weight:500;text-decoration:none}
-.nav-pill:hover{background:var(--sage)!important}
-.page-header{padding:7rem 2rem 3rem;text-align:center;background:var(--butter-lt);border-bottom:1px solid var(--butter)}
-.eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8a6200;margin-bottom:0.75rem}
-.page-header h1{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:0.75rem}
-.page-header h1 em{font-style:italic;font-weight:300;color:#8a6200}
-.page-header p{color:var(--mid);max-width:500px;margin:0 auto;line-height:1.8}
-.wrap{max-width:1080px;margin:0 auto}
-.section{padding:4rem 2rem}
-/* BRAND TABS */
-.brand-tabs{display:flex;gap:0.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
-.brand-tab{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1.25rem;border-radius:100px;font-size:0.82rem;font-weight:600;border:1.5px solid var(--border2);background:transparent;color:var(--mid);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s}
-.brand-tab:hover{border-color:var(--charcoal);color:var(--charcoal)}
-.brand-tab.active{background:var(--charcoal);color:var(--bg);border-color:var(--charcoal)}
-.tab-panel{display:none}
-.tab-panel.active{display:block}
-/* SHOP GRID */
-.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.shop-card{background:var(--bg);border-radius:20px;border:1px solid var(--border);overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;display:flex;flex-direction:column}
-.shop-card:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(44,44,42,0.09)}
-.shop-thumb{height:180px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative}
-.thumb-a{background:var(--blush-lt)} .thumb-b{background:var(--butter-lt)} .thumb-c{background:var(--sage-pal)} .thumb-d{background:var(--sky-lt)} .thumb-e{background:var(--lav-lt)} .thumb-f{background:var(--butter-lt)}
-.brand-badge{position:absolute;top:0.75rem;left:0.75rem;padding:0.2rem 0.7rem;border-radius:100px;font-size:0.65rem;font-weight:700}
-.badge-panda{background:var(--blush-lt);color:#b0604a}
-.badge-chollo{background:var(--sage-pal);color:var(--sage)}
-.shop-inner{padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.4rem}
-.shop-brand{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--light)}
-.shop-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;line-height:1.25}
-.shop-desc{font-size:0.8rem;color:var(--mid);line-height:1.6;flex:1}
-.shop-actions{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:0.75rem}
-.soon-badge{display:inline-flex;align-items:center;gap:0.3rem;background:var(--sage-pal);color:var(--sage);padding:0.2rem 0.65rem;border-radius:100px;font-size:0.68rem;font-weight:700}
-.shop-btn{background:var(--charcoal);color:var(--bg);border:none;border-radius:100px;padding:0.45rem 1rem;font-size:0.75rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;text-decoration:none;transition:background 0.2s;display:inline-flex;align-items:center;gap:0.3rem}
-.shop-btn:hover{background:var(--sage)}
-/* TRUST BAR */
-.trust-bar{background:var(--bg2);border-radius:16px;padding:1.5rem 2rem;margin-bottom:2.5rem;display:flex;gap:2rem;align-items:center;flex-wrap:wrap;justify-content:center}
-.trust-item{display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--mid)}
-.trust-icon{font-size:1.2rem}
-/* FOOTER */
-footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
-.footer-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.08);flex-wrap:wrap;gap:1rem}
-.f-logo{color:#fdfcf9;font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:0.4rem}
-.f-logo em{color:var(--sage-lt);font-style:italic;font-weight:300}
-.f-logo-panda{width:30px;height:30px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
-.f-nav{display:flex;gap:1.5rem;list-style:none}
-.f-nav a{color:rgba(253,252,249,0.55);font-size:0.82rem;text-decoration:none;transition:color 0.2s}
-.f-nav a:hover{color:var(--sage-lt)}
-.footer-bottom{max-width:1080px;margin:1.5rem auto 0;font-size:0.75rem;color:rgba(253,252,249,0.28);display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem}
-.footer-bottom a{color:rgba(253,252,249,0.28);text-decoration:none}
-@media(max-width:860px){nav{padding:0 1.25rem}.nav-center{display:none}.shop-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:540px){.shop-grid{grid-template-columns:1fr}.section{padding:3rem 1.25rem}}
+/* ── Estilos exclusivos de esta página ── */
 
-/* MOBILE NAV */
-.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:1px solid var(--border2);border-radius:10px;cursor:pointer;padding:0 9px;flex-shrink:0}
-.hamburger span{display:block;height:2px;background:var(--charcoal);border-radius:2px;transition:all 0.25s}
-.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(253,252,249,0.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:199;padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:0.25rem}
-.mobile-menu a{font-size:1rem;font-weight:600;color:var(--charcoal);text-decoration:none;padding:0.7rem 0.5rem;border-bottom:1px solid var(--border);display:block;transition:color 0.2s}
-.mobile-menu a:last-child{border-bottom:none}
-.mobile-menu a:hover,.mobile-menu a.active{color:var(--sage)}
-.mobile-menu.open{display:flex}
-@media(max-width:860px){.hamburger{display:flex}}
+.page-header { padding: 7rem 2rem 3rem; text-align: center; background: var(--butter-lt); border-bottom: 1px solid var(--butter); }
+.trust-bar { background: var(--bg2); border-radius: var(--radius-md); padding: 1.5rem 2rem; margin-bottom: 2.5rem; display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; justify-content: center; }
+.trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--mid); }
+.brand-tabs { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.brand-tab { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; border-radius: var(--radius-pill); font-size: 0.82rem; font-weight: 600; border: 1.5px solid var(--border2); background: transparent; color: var(--mid); cursor: pointer; font-family: var(--font-body); transition: all 0.2s; }
+.brand-tab:hover { border-color: var(--charcoal); color: var(--charcoal); }
+.brand-tab.active { background: var(--charcoal); color: var(--bg); border-color: var(--charcoal); }
+.brand-tab img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; }
+.shop-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.shop-card { background: var(--bg); border-radius: var(--radius-lg); border: 1px solid var(--border); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
+.shop-card:hover { transform: translateY(-5px); box-shadow: 0 14px 32px rgba(44,44,42,0.09); }
+.shop-thumb { height: 160px; display: flex; align-items: center; justify-content: center; position: relative; }
+.shop-thumb img.brand-thumb { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+.t-blush { background: var(--blush-lt); } .t-butter { background: var(--butter-lt); }
+.t-sage  { background: var(--sage-pal); } .t-sky    { background: var(--sky-lt);   }
+.t-lav   { background: var(--lav-lt);   }
+.brand-badge { position: absolute; top: 0.75rem; left: 0.75rem; padding: 0.2rem 0.7rem; border-radius: var(--radius-pill); font-size: 0.65rem; font-weight: 700; }
+.badge-panda  { background: var(--blush-lt); color: #b0604a; }
+.badge-chollo { background: var(--sage-pal); color: var(--sage); }
+.shop-inner { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+.shop-brand { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); }
+.shop-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; line-height: 1.25; }
+.shop-desc  { font-size: 0.8rem; color: var(--mid); line-height: 1.6; flex: 1; }
+@media (max-width:860px) { .shop-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width:540px) { .shop-grid { grid-template-columns: 1fr; } }
+
 </style>
 </head>
 <body>
+
 <nav>
-  <a href="index.html" class="logo"><img src="PANDALICIOSUS.JPG" alt="PandaUniverse" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;">Panda<em>Universe</em></a>
+  <a href="index.html" class="logo">
+    <img src="PANDALICIOSUS.JPG" alt="PandaUniverse">
+    Panda<em>Universe</em>
+  </a>
   <div class="nav-center">
     <a href="recetas.html">Recetas</a>
     <a href="chollos.html">Chollos</a>
     <a href="tienda.html" class="active">Tienda</a>
     <a href="referidos.html">Referidos</a>
+    <a href="contacto.html">Contacto</a>
   </div>
   <a href="index.html#newsletter" class="nav-pill">Suscríbete</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menú" id="hamburgerBtn">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-    <a href="recetas.html">Recetas</a>
+  <a href="recetas.html">Recetas</a>
   <a href="chollos.html">Chollos</a>
   <a href="tienda.html" class="active">Tienda</a>
   <a href="referidos.html">Referidos</a>
@@ -104,212 +66,118 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
 </div>
 
 <div class="page-header">
-  <div class="eyebrow">TikTok Shop · Sello panda</div>
+  <span class="eyebrow" style="color:#8a6200">TikTok Shop · Sello panda</span>
   <div style="display:flex;justify-content:center;gap:0.5rem;margin:0 auto 1.25rem">
-    <img src="PANDALICIOSUS.JPG" alt="Pandaliciosus" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid #f7ede8">
-    <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid #d4e4d5;margin-left:-12px">
+    <img src="PANDALICIOSUS.JPG" alt="Pandaliciosus" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--blush)">
+    <img src="PANDACHOLLO.JPG"   alt="Pandachollo"   style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--sage-lt);margin-left:-12px">
   </div>
-  <h1>Productos con<br><em>sello panda</em></h1>
-  <p>Solo recomiendo lo que yo mismo uso y me gusta. Selección honesta de productos de cocina, hogar, tecnología y bienestar. Con sello 🐼</p>
+  <h1>Productos con<br><em style="color:#8a6200">sello panda</em></h1>
+  <p>Solo recomiendo lo que yo mismo uso y me gusta. Selección honesta con sello 🐼</p>
 </div>
 
 <section class="section">
   <div class="wrap">
-
     <div class="trust-bar">
-      <div class="trust-item"><span class="trust-icon">✅</span> Solo productos probados</div>
-      <div class="trust-item"><span class="trust-icon">🔥</span> Actualizados cada semana</div>
-      <div class="trust-item"><span class="trust-icon">💬</span> Opinión honesta siempre</div>
-      <div class="trust-item"><span class="trust-icon">🛡️</span> Compra segura en TikTok Shop</div>
+      <div class="trust-item">✅ Solo productos probados</div>
+      <div class="trust-item">🔥 Actualizados cada semana</div>
+      <div class="trust-item">💬 Opinión honesta siempre</div>
+      <div class="trust-item">🛡️ Compra segura en TikTok Shop</div>
     </div>
 
     <div class="brand-tabs">
-      <button class="brand-tab active" onclick="switchBrand('todo',this)">🐼 Todo</button>
-      <button class="brand-tab" onclick="switchBrand('pandaliciosus',this)"><img src="PANDALICIOSUS.JPG" style="width:20px;height:20px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:4px"> Pandaliciosus</button>
-      <button class="brand-tab" onclick="switchBrand('pandachollo',this)"><img src="PANDACHOLLO.JPG" style="width:20px;height:20px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:4px"> Pandachollo</button>
+      <button class="brand-tab active" onclick="switchBrand('todo',          this)">🐼 Todo</button>
+      <button class="brand-tab"        onclick="switchBrand('pandaliciosus', this)">
+        <img src="PANDALICIOSUS.JPG" alt=""> Pandaliciosus
+      </button>
+      <button class="brand-tab"        onclick="switchBrand('pandachollo',   this)">
+        <img src="PANDACHOLLO.JPG" alt=""> Pandachollo
+      </button>
     </div>
 
     <div id="panel-todo" class="tab-panel active">
       <div class="shop-grid">
-        <div class="shop-card">
-          <div class="shop-thumb thumb-a" style="position:relative"><img src="PANDALICIOSUS.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-panda" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandaliciosus</span></div>
-          <div class="shop-inner">
-            <div class="shop-brand">Cocina · Utensilios</div>
-            <div class="shop-title">Utensilios de cocina esenciales</div>
-            <p class="shop-desc">Los mejores utensilios para cocinar recetas panda sin drama. Calidad garantizada.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
-        <div class="shop-card">
-          <div class="shop-thumb thumb-b" style="position:relative"><img src="PANDALICIOSUS.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-panda" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandaliciosus</span></div>
-          <div class="shop-inner">
-            <div class="shop-brand">Alimentación · Despensa</div>
-            <div class="shop-title">Despensa panda saludable</div>
-            <p class="shop-desc">Ingredientes y productos para comer bien sin complicarte la vida ni el presupuesto.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
-        <div class="shop-card">
-          <div class="shop-thumb thumb-c" style="position:relative"><img src="PANDACHOLLO.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-chollo" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandachollo</span></div>
-          <div class="shop-inner">
-            <div class="shop-brand">Hogar · Organización</div>
-            <div class="shop-title">Chollos de hogar top</div>
-            <p class="shop-desc">Productos increíbles para el hogar a precios que no te creerás. Panda-aprobados.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
-        <div class="shop-card">
-          <div class="shop-thumb thumb-d" style="position:relative"><img src="PANDACHOLLO.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-chollo" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandachollo</span></div>
-          <div class="shop-inner">
-            <div class="shop-brand">Tecnología · Gadgets</div>
-            <div class="shop-title">Gadgets y tecnología al mejor precio</div>
-            <p class="shop-desc">Los mejores gadgets a precios razonables. Porque la tecnología no tiene que costar un riñón.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
-        <div class="shop-card">
-          <div class="shop-thumb thumb-e" style="position:relative"><img src="PANDALICIOSUS.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-panda" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandaliciosus</span></div>
-          <div class="shop-inner">
-            <div class="shop-brand">Bienestar · Cuidado personal</div>
-            <div class="shop-title">Cuidado y bienestar con sello panda</div>
-            <p class="shop-desc">Productos para sentirte bien por dentro y por fuera. Seleccionados con cariño.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
-        <div class="shop-card">
-          <div class="shop-thumb thumb-f" style="position:relative"><img src="PANDACHOLLO.JPG" style="width:64px;height:64px;border-radius:50%;object-fit:cover"><span class="brand-badge badge-chollo" style="position:absolute;bottom:0.75rem;left:0.75rem">Pandachollo</span></div>
-          <div class="shop-inner">
-            <div class="shop-brand">Destacado · Chollo semanal</div>
-            <div class="shop-title">El chollo de la semana 🐼</div>
-            <p class="shop-desc">Cada semana, un producto excepcional a un precio que no puedes ignorar. Solo por tiempo limitado.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
+        <div class="shop-card"><div class="shop-thumb t-blush"><img src="PANDALICIOSUS.JPG" alt="Pandaliciosus" class="brand-thumb"><span class="brand-badge badge-panda">Pandaliciosus</span></div><div class="shop-inner"><div class="shop-brand">Cocina · Utensilios</div><div class="shop-title">Utensilios de cocina esenciales</div><p class="shop-desc">Los mejores utensilios para cocinar recetas panda sin drama.</p><span class="soon-badge">● Próximamente</span></div></div>
+        <div class="shop-card"><div class="shop-thumb t-butter"><img src="PANDALICIOSUS.JPG" alt="Pandaliciosus" class="brand-thumb"><span class="brand-badge badge-panda">Pandaliciosus</span></div><div class="shop-inner"><div class="shop-brand">Alimentación · Despensa</div><div class="shop-title">Despensa panda saludable</div><p class="shop-desc">Ingredientes y productos para comer bien sin complicarte la vida.</p><span class="soon-badge">● Próximamente</span></div></div>
+        <div class="shop-card"><div class="shop-thumb t-sage"><img src="PANDACHOLLO.JPG" alt="Pandachollo" class="brand-thumb"><span class="brand-badge badge-chollo">Pandachollo</span></div><div class="shop-inner"><div class="shop-brand">Hogar · Organización</div><div class="shop-title">Chollos de hogar top</div><p class="shop-desc">Productos increíbles a precios que no te creerás.</p><span class="soon-badge">● Próximamente</span></div></div>
+        <div class="shop-card"><div class="shop-thumb t-sky"><img src="PANDACHOLLO.JPG" alt="Pandachollo" class="brand-thumb"><span class="brand-badge badge-chollo">Pandachollo</span></div><div class="shop-inner"><div class="shop-brand">Tecnología · Gadgets</div><div class="shop-title">Gadgets al mejor precio</div><p class="shop-desc">Los mejores gadgets a precios razonables.</p><span class="soon-badge">● Próximamente</span></div></div>
+        <div class="shop-card"><div class="shop-thumb t-lav"><img src="PANDALICIOSUS.JPG" alt="Pandaliciosus" class="brand-thumb"><span class="brand-badge badge-panda">Pandaliciosus</span></div><div class="shop-inner"><div class="shop-brand">Bienestar · Cuidado personal</div><div class="shop-title">Cuidado y bienestar panda</div><p class="shop-desc">Productos para sentirte bien por dentro y por fuera.</p><span class="soon-badge">● Próximamente</span></div></div>
+        <div class="shop-card"><div class="shop-thumb t-butter"><img src="PANDACHOLLO.JPG" alt="Pandachollo" class="brand-thumb"><span class="brand-badge badge-chollo">Pandachollo</span></div><div class="shop-inner"><div class="shop-brand">Destacado · Chollo semanal</div><div class="shop-title">El chollo de la semana 🐼</div><p class="shop-desc">Un producto excepcional a un precio que no puedes ignorar.</p><span class="soon-badge">● Próximamente</span></div></div>
       </div>
     </div>
 
     <div id="panel-pandaliciosus" class="tab-panel">
       <div class="shop-grid">
-        <div class="shop-card">
-          <div class="shop-thumb thumb-a">🍳</div>
-          <div class="shop-inner">
-            <div class="shop-brand">Cocina · Utensilios</div>
-            <div class="shop-title">Utensilios de cocina esenciales</div>
-            <p class="shop-desc">Los mejores utensilios para cocinar recetas panda sin drama.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
-        <div class="shop-card">
-          <div class="shop-thumb thumb-b">🥗</div>
-          <div class="shop-inner">
-            <div class="shop-brand">Alimentación · Despensa</div>
-            <div class="shop-title">Despensa panda saludable</div>
-            <p class="shop-desc">Ingredientes y productos para comer bien sin complicarte la vida.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
-        <div class="shop-card">
-          <div class="shop-thumb thumb-e">✨</div>
-          <div class="shop-inner">
-            <div class="shop-brand">Bienestar · Cuidado personal</div>
-            <div class="shop-title">Cuidado y bienestar con sello panda</div>
-            <p class="shop-desc">Productos para sentirte bien por dentro y por fuera.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
+        <div class="shop-card"><div class="shop-thumb t-blush"><img src="PANDALICIOSUS.JPG" alt="" class="brand-thumb"></div><div class="shop-inner"><div class="shop-brand">Cocina</div><div class="shop-title">Utensilios de cocina esenciales</div><p class="shop-desc">Los mejores utensilios para recetas panda.</p><span class="soon-badge">● Próximamente</span></div></div>
+        <div class="shop-card"><div class="shop-thumb t-butter"><img src="PANDALICIOSUS.JPG" alt="" class="brand-thumb"></div><div class="shop-inner"><div class="shop-brand">Alimentación</div><div class="shop-title">Despensa panda saludable</div><p class="shop-desc">Come bien sin complicarte la vida.</p><span class="soon-badge">● Próximamente</span></div></div>
+        <div class="shop-card"><div class="shop-thumb t-lav"><img src="PANDALICIOSUS.JPG" alt="" class="brand-thumb"></div><div class="shop-inner"><div class="shop-brand">Bienestar</div><div class="shop-title">Cuidado y bienestar panda</div><p class="shop-desc">Sentirte bien por dentro y por fuera.</p><span class="soon-badge">● Próximamente</span></div></div>
       </div>
     </div>
 
     <div id="panel-pandachollo" class="tab-panel">
       <div class="shop-grid">
-        <div class="shop-card">
-          <div class="shop-thumb thumb-c">📦</div>
-          <div class="shop-inner">
-            <div class="shop-brand">Hogar · Organización</div>
-            <div class="shop-title">Chollos de hogar top</div>
-            <p class="shop-desc">Productos increíbles a precios que no te creerás. Panda-aprobados.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
-        <div class="shop-card">
-          <div class="shop-thumb thumb-d">💻</div>
-          <div class="shop-inner">
-            <div class="shop-brand">Tecnología · Gadgets</div>
-            <div class="shop-title">Gadgets y tecnología al mejor precio</div>
-            <p class="shop-desc">Los mejores gadgets a precios razonables.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
-        <div class="shop-card">
-          <div class="shop-thumb thumb-f">🔥</div>
-          <div class="shop-inner">
-            <div class="shop-brand">Destacado · Chollo semanal</div>
-            <div class="shop-title">El chollo de la semana 🐼</div>
-            <p class="shop-desc">Un producto excepcional a un precio que no puedes ignorar. Solo por tiempo limitado.</p>
-            <div class="shop-actions"><span class="soon-badge">● Próximamente</span></div>
-          </div>
-        </div>
+        <div class="shop-card"><div class="shop-thumb t-sage"><img src="PANDACHOLLO.JPG" alt="" class="brand-thumb"></div><div class="shop-inner"><div class="shop-brand">Hogar</div><div class="shop-title">Chollos de hogar top</div><p class="shop-desc">Productos increíbles a precios que no te creerás.</p><span class="soon-badge">● Próximamente</span></div></div>
+        <div class="shop-card"><div class="shop-thumb t-sky"><img src="PANDACHOLLO.JPG" alt="" class="brand-thumb"></div><div class="shop-inner"><div class="shop-brand">Tecnología</div><div class="shop-title">Gadgets al mejor precio</div><p class="shop-desc">Los mejores gadgets a precios razonables.</p><span class="soon-badge">● Próximamente</span></div></div>
+        <div class="shop-card"><div class="shop-thumb t-butter"><img src="PANDACHOLLO.JPG" alt="" class="brand-thumb"></div><div class="shop-inner"><div class="shop-brand">Chollo semanal</div><div class="shop-title">El chollo de la semana 🐼</div><p class="shop-desc">Un producto excepcional a precio irresistible.</p><span class="soon-badge">● Próximamente</span></div></div>
       </div>
     </div>
 
-    <p style="margin-top:1.5rem;font-size:0.75rem;color:var(--light);text-align:center">* Los productos de la tienda están disponibles a través de TikTok Shop. Algunos enlaces pueden ser de afiliado.</p>
+    <p style="margin-top:1.5rem;font-size:0.75rem;color:var(--light);text-align:center">
+      * Los productos están disponibles en TikTok Shop. Algunos enlaces pueden ser de afiliado.
+    </p>
   </div>
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <a href="index.html" class="f-logo"><img src="PANDALICIOSUS.JPG" alt="PandaUniverse" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;">Panda<em>Universe</em></a>
-    <ul class="f-nav">
-      <li><a href="recetas.html">Recetas</a></li>
-      <li><a href="chollos.html">Chollos</a></li>
-      <li><a href="tienda.html">Tienda</a></li>
-      <li><a href="referidos.html">Referidos</a></li>
-      <li><a href="index.html#newsletter">Newsletter</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-    </ul>
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="f-logo">
+        <img src="PANDALICIOSUS.JPG" alt="PandaUniverse">
+        Panda<em>Universe</em>
+      </a>
+      <p class="f-desc">Dos marcas, un espíritu. Recetas, chollos, finanzas y TikTok Shop con sello panda.</p>
+    </div>
+    <div class="f-col">
+      <h5>Pandaliciosus</h5>
+      <ul>
+        <li><a href="recetas.html">Blog de recetas</a></li>
+        <li><a href="https://www.tiktok.com/@pandaliciosus" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.instagram.com/pandaliciosus" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@pandaliciosus" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Pandachollo</h5>
+      <ul>
+        <li><a href="chollos.html">Blog de chollos</a></li>
+        <li><a href="referidos.html">Códigos referido</a></li>
+        <li><a href="https://www.tiktok.com/@pandachollo" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.youtube.com/@pandachollo" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="contacto.html">Formulario de contacto</a></li>
+        <li><a href="contacto.html">Colaboraciones</a></li>
+        <li><a href="contacto.html">Sobre mí</a></li>
+      </ul>
+    </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 PandaUniverse · Hecho con 🐼</span>
+    <span>© 2025 PandaUniverse · Hecho con 🐼 y mucho bambú</span>
     <span><a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a></span>
   </div>
 </footer>
 
-
+<script src="config.js"></script>
+<script src="main.js"></script>
 <script>
-/* ── HAMBURGER ── */
-function toggleMenu(){
-  var m = document.getElementById('mobileMenu');
-  var b = document.getElementById('hamburgerBtn');
-  if(!m || !b) return;
-  var open = m.classList.toggle('open');
-  var spans = b.querySelectorAll('span');
-  if(open){
-    spans[0].style.transform='rotate(45deg) translate(5px,5px)';
-    spans[1].style.opacity='0';
-    spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
-  } else {
-    spans[0].style.transform='';
-    spans[1].style.opacity='1';
-    spans[2].style.transform='';
-  }
-}
-document.addEventListener('click', function(e){
-  var m = document.getElementById('mobileMenu');
-  var b = document.getElementById('hamburgerBtn');
-  if(!m || !b) return;
-  if(!m.contains(e.target) && !b.contains(e.target)){
-    m.classList.remove('open');
-    var spans = b.querySelectorAll('span');
-    spans[0].style.transform=''; spans[1].style.opacity='1'; spans[2].style.transform='';
-  }
-});
-
-/* ── BRAND FILTER ── */
-function switchBrand(key, btn){
-  document.querySelectorAll('.brand-tab').forEach(function(b){ b.classList.remove('active'); });
-  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+function switchBrand(key, btn) {
+  document.querySelectorAll('.brand-tab').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
   btn.classList.add('active');
-  document.getElementById('panel-'+key).classList.add('active');
+  var panel = document.getElementById('panel-' + key);
+  if (panel) panel.classList.add('active');
 }
 </script>
 </body>

@@ -4,275 +4,157 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chollos & Finanzas | PandaUniverse · Pandachollo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="main.css">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#fdfcf9;--bg2:#f7f5f0;--sage:#7a9e7e;--sage-lt:#d4e4d5;--sage-pal:#edf5ee;--blush-lt:#f7ede8;--butter-lt:#fdf6dc;--sky-lt:#e8f3f9;--lav-lt:#f0edf9;--charcoal:#2c2c2a;--mid:#6b6b66;--light:#a8a89e;--border:rgba(44,44,42,0.08);--border2:rgba(44,44,42,0.14)}
-html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--charcoal);overflow-x:hidden;font-size:15px;line-height:1.6}
-::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--sage-lt);border-radius:3px}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;background:rgba(253,252,249,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.logo{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--charcoal);text-decoration:none;display:flex;align-items:center;gap:0.5rem}
-.logo-panda{width:34px;height:34px;background:var(--charcoal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
-.logo em{font-style:italic;color:var(--sage);font-weight:300}
-.nav-center{display:flex;gap:0.25rem}
-.nav-center a{font-size:0.82rem;font-weight:500;color:var(--mid);text-decoration:none;padding:0.4rem 0.9rem;border-radius:100px;transition:background 0.2s,color 0.2s}
-.nav-center a:hover,.nav-center a.active{background:var(--bg2);color:var(--charcoal)}
-.nav-pill{background:var(--charcoal);color:var(--bg)!important;padding:0.45rem 1.1rem;border-radius:100px;font-size:0.82rem;font-weight:500;text-decoration:none}
-.nav-pill:hover{background:var(--sage)!important}
-.page-header{padding:7rem 2rem 3rem;text-align:center;background:var(--sage-pal);border-bottom:1px solid var(--sage-lt)}
-.eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);margin-bottom:0.75rem}
-.page-header h1{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:0.75rem}
-.page-header h1 em{font-style:italic;font-weight:300;color:var(--sage)}
-.page-header p{color:var(--mid);max-width:500px;margin:0 auto;line-height:1.8}
-.wrap{max-width:1080px;margin:0 auto}
-.section{padding:4rem 2rem}
-/* TABS */
-.tab-bar{display:flex;gap:0.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
-.tab-btn{padding:0.65rem 1.3rem;border-radius:12px 12px 0 0;font-size:0.83rem;font-weight:600;cursor:pointer;border:1px solid transparent;border-bottom:none;color:var(--mid);background:transparent;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s}
-.tab-btn.active{background:var(--bg);color:var(--charcoal);border-color:var(--border);border-bottom-color:var(--bg);margin-bottom:-1px}
-.tab-panel{display:none}
-.tab-panel.active{display:block}
-/* GRID */
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.blog-card{background:var(--bg);border-radius:20px;border:1px solid var(--border);overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;text-decoration:none;color:var(--charcoal);display:flex;flex-direction:column}
-.blog-card:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(44,44,42,0.09)}
-.blog-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative}
-.thumb-a{background:var(--sage-pal)} .thumb-b{background:var(--butter-lt)} .thumb-c{background:var(--sky-lt)} .thumb-d{background:var(--lav-lt)} .thumb-e{background:var(--blush-lt)}
-.cat-badge{position:absolute;bottom:0.75rem;left:0.75rem;background:rgba(0,0,0,0.65);color:#fff;padding:0.2rem 0.7rem;border-radius:100px;font-size:0.68rem;font-weight:600}
-.blog-body{padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.4rem}
-.blog-cat-label{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sage)}
-.blog-cat-label.fin{color:#7060c0}
-.blog-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;line-height:1.3}
-.blog-snippet{font-size:0.8rem;color:var(--mid);line-height:1.65;flex:1}
-.blog-meta{display:flex;align-items:center;justify-content:space-between;margin-top:0.75rem}
-.blog-time{font-size:0.72rem;color:var(--light)}
-.blog-arrow{font-size:0.75rem;color:var(--sage);font-weight:700}
-.soon-badge{display:inline-flex;align-items:center;gap:0.3rem;background:var(--sage-pal);color:var(--sage);padding:0.2rem 0.65rem;border-radius:100px;font-size:0.68rem;font-weight:700}
-/* HIGHLIGHT CARD */
-.highlight{background:var(--charcoal);border-radius:20px;padding:2rem;margin-bottom:2rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
-.hl-icon{font-size:3rem;flex-shrink:0}
-.hl-content{}
-.hl-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage-lt);margin-bottom:0.4rem}
-.hl-title{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:#fdfcf9;margin-bottom:0.4rem}
-.hl-title em{font-style:italic;font-weight:300;color:var(--sage-lt)}
-.hl-desc{font-size:0.85rem;color:rgba(253,252,249,0.6);line-height:1.65;max-width:500px}
-/* SOCIAL CTA */
-.social-cta{background:var(--bg2);border-radius:20px;padding:2rem;text-align:center;margin-top:3rem}
-.social-cta h3{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;margin-bottom:0.5rem}
-.social-cta h3 em{font-style:italic;font-weight:300;color:var(--sage)}
-.social-cta p{color:var(--mid);font-size:0.88rem;margin-bottom:1.25rem}
-.soc-row{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap}
-.s-btn{display:inline-flex;align-items:center;gap:0.35rem;padding:0.45rem 1rem;border-radius:100px;font-size:0.78rem;font-weight:600;text-decoration:none;color:#fff;transition:transform 0.15s,opacity 0.2s}
-.s-btn:hover{transform:scale(1.05);opacity:0.88}
-.s-tiktok{background:var(--charcoal)} .s-yt{background:#cc0000}
-.ref-cta{display:inline-flex;align-items:center;gap:0.4rem;background:var(--charcoal);color:var(--bg);padding:0.7rem 1.5rem;border-radius:100px;font-size:0.85rem;font-weight:600;text-decoration:none;margin-top:0.5rem;transition:background 0.2s}
-.ref-cta:hover{background:var(--sage)}
-footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
-.footer-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.08);flex-wrap:wrap;gap:1rem}
-.f-logo{color:#fdfcf9;font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:0.4rem}
-.f-logo em{color:var(--sage-lt);font-style:italic;font-weight:300}
-.f-logo-panda{width:30px;height:30px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
-.f-nav{display:flex;gap:1.5rem;list-style:none}
-.f-nav a{color:rgba(253,252,249,0.55);font-size:0.82rem;text-decoration:none;transition:color 0.2s}
-.f-nav a:hover{color:var(--sage-lt)}
-.footer-bottom{max-width:1080px;margin:1.5rem auto 0;font-size:0.75rem;color:rgba(253,252,249,0.28);display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem}
-.footer-bottom a{color:rgba(253,252,249,0.28);text-decoration:none}
-@media(max-width:860px){nav{padding:0 1.25rem}.nav-center{display:none}.blog-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:540px){.blog-grid{grid-template-columns:1fr}.section{padding:3rem 1.25rem}}
+/* ── Estilos exclusivos de esta página ── */
 
-/* MOBILE NAV */
-.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:1px solid var(--border2);border-radius:10px;cursor:pointer;padding:0 9px;flex-shrink:0}
-.hamburger span{display:block;height:2px;background:var(--charcoal);border-radius:2px;transition:all 0.25s}
-.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(253,252,249,0.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:199;padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:0.25rem}
-.mobile-menu a{font-size:1rem;font-weight:600;color:var(--charcoal);text-decoration:none;padding:0.7rem 0.5rem;border-bottom:1px solid var(--border);display:block;transition:color 0.2s}
-.mobile-menu a:last-child{border-bottom:none}
-.mobile-menu a:hover,.mobile-menu a.active{color:var(--sage)}
-.mobile-menu.open{display:flex}
-@media(max-width:860px){.hamburger{display:flex}}
+.page-header { padding-top: 6rem; padding-bottom: 2.5rem; text-align: center; }
+.blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.blog-card {
+  background: var(--bg); border-radius: var(--radius-lg); border: 1px solid var(--border);
+  overflow: hidden; transition: transform 0.25s, box-shadow 0.25s;
+  text-decoration: none; color: var(--charcoal); display: flex; flex-direction: column;
+}
+.blog-card:hover { transform: translateY(-5px); box-shadow: 0 14px 32px rgba(44,44,42,0.09); }
+.blog-thumb {
+  height: 160px; display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem; position: relative;
+}
+.t-blush { background: var(--blush-lt); } .t-butter { background: var(--butter-lt); }
+.t-sage  { background: var(--sage-pal); } .t-sky    { background: var(--sky-lt);    }
+.t-lav   { background: var(--lav-lt);   }
+.cat-badge {
+  position: absolute; bottom: 0.75rem; left: 0.75rem;
+  background: rgba(0,0,0,0.65); color: #fff;
+  padding: 0.2rem 0.7rem; border-radius: var(--radius-pill);
+  font-size: 0.68rem; font-weight: 600;
+}
+.blog-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+.blog-cat { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.cat-recipe { color: #c06040; } .cat-chollo { color: var(--sage); } .cat-fin { color: #7060c0; }
+.blog-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; line-height: 1.3; }
+.blog-snippet { font-size: 0.8rem; color: var(--mid); line-height: 1.65; flex: 1; }
+.blog-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 0.75rem; }
+.blog-time { font-size: 0.72rem; color: var(--light); }
+.blog-arrow { font-size: 0.75rem; color: var(--sage); font-weight: 700; }
+.social-cta {
+  background: var(--bg2); border-radius: var(--radius-lg); padding: 2rem;
+  text-align: center; margin-top: 3rem;
+}
+.social-cta h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
+.soc-row { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+.filter-btn {
+  padding: 0.38rem 1rem; border-radius: var(--radius-pill); font-size: 0.78rem; font-weight: 600;
+  border: 1.5px solid var(--border2); background: transparent; color: var(--mid);
+  cursor: pointer; font-family: var(--font-body); transition: all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active { background: var(--charcoal); color: var(--bg); border-color: var(--charcoal); }
+.highlight {
+  background: var(--charcoal); border-radius: var(--radius-lg); padding: 2rem;
+  margin-bottom: 2rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+}
+.hl-icon img { width: 56px; height: 56px; border-radius: 14px; object-fit: cover; flex-shrink: 0; }
+.hl-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage-lt); margin-bottom: 0.4rem; }
+.hl-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: #fdfcf9; margin-bottom: 0.4rem; }
+.hl-desc { font-size: 0.85rem; color: rgba(253,252,249,0.6); line-height: 1.65; max-width: 500px; }
+@media (max-width:860px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width:540px) { .blog-grid { grid-template-columns: 1fr; } }
+
+.ref-cta {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--charcoal); color: var(--bg);
+  padding: 0.7rem 1.5rem; border-radius: var(--radius-pill);
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+  margin-top: 0.5rem; transition: background 0.2s;
+}
+.ref-cta:hover { background: var(--sage); }
+
 </style>
 </head>
 <body>
+
 <nav>
-  <a href="index.html" class="logo"><img src="PANDALICIOSUS.JPG" alt="PandaUniverse" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;">Panda<em>Universe</em></a>
+  <a href="index.html" class="logo">
+    <img src="PANDALICIOSUS.JPG" alt="PandaUniverse">
+    Panda<em>Universe</em>
+  </a>
   <div class="nav-center">
     <a href="recetas.html">Recetas</a>
     <a href="chollos.html" class="active">Chollos</a>
     <a href="tienda.html">Tienda</a>
     <a href="referidos.html">Referidos</a>
+    <a href="contacto.html">Contacto</a>
   </div>
   <a href="index.html#newsletter" class="nav-pill">Suscríbete</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menú" id="hamburgerBtn">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-    <a href="recetas.html">Recetas</a>
+  <a href="recetas.html">Recetas</a>
   <a href="chollos.html" class="active">Chollos</a>
   <a href="tienda.html">Tienda</a>
   <a href="referidos.html">Referidos</a>
   <a href="contacto.html">Contacto</a>
 </div>
 
-<div class="page-header">
-  <div class="eyebrow">Pandachollo · Chollos & Finanzas</div>
-  <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin:0 auto 1.25rem;display:block;border:3px solid #d4e4d5">
+<div class="page-header" style="background:var(--sage-pal);border-bottom:1px solid var(--sage-lt);padding:7rem 2rem 3rem">
+  <span class="eyebrow">Pandachollo · Chollos & Finanzas</span>
+  <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin:0 auto 1.25rem;display:block;border:3px solid var(--sage-lt)">
   <h1>Ahorra más,<br><em>gana mejor</em></h1>
-  <p>Los mejores chollos de internet, gangas increíbles y guías para que tu dinero rinda más. Porque encontrar un buen precio también es un arte. 🔥</p>
+  <p>Los mejores chollos y guías para que tu dinero rinda más. Porque encontrar un buen precio también es un arte. 🔥</p>
 </div>
 
 <section class="section">
   <div class="wrap">
-
     <div class="tab-bar">
-      <button class="tab-btn active" onclick="switchTab('chollos',this)">🔥 Chollos</button>
-      <button class="tab-btn" onclick="switchTab('finanzas',this)">💸 Finanzas</button>
+      <button class="tab-btn active" onclick="switchTab('panel-chollos',  this)">🔥 Chollos</button>
+      <button class="tab-btn"        onclick="switchTab('panel-finanzas', this)">💸 Finanzas</button>
     </div>
 
     <!-- CHOLLOS -->
     <div id="panel-chollos" class="tab-panel active">
       <div class="highlight">
-        <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:56px;height:56px;border-radius:14px;object-fit:cover">
-        <div class="hl-content">
+        <div class="hl-icon"><img src="PANDACHOLLO.JPG" alt="Pandachollo"></div>
+        <div>
           <div class="hl-label">Chollo de la semana</div>
           <div class="hl-title">Los mejores descuentos <em>curados por el panda</em></div>
-          <p class="hl-desc">Cada semana revisamos cientos de ofertas para traerte solo las que realmente merecen la pena. Sin clickbait, con sello 🐼.</p>
+          <p class="hl-desc">Cada semana revisamos cientos de ofertas para traerte solo las que realmente merecen la pena.</p>
         </div>
       </div>
       <div class="blog-grid">
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-a">🛒<span class="cat-badge">Amazon · Hogar</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label">Chollos semanales</div>
-            <div class="blog-title">Los 10 mejores chollos de Amazon esta semana</div>
-            <p class="blog-snippet">Selección panda de los descuentos más brutales. Todo probado, todo verificado.</p>
-            <div class="blog-meta"><span class="blog-time">📖 5 min</span><span class="blog-arrow">Ver →</span></div>
-          </div>
-        </a>
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-b">💻<span class="cat-badge">Tech · Gadgets</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label">Tecnología</div>
-            <div class="blog-title">Gadgets por menos de 20€ que cambiarán tu vida</div>
-            <p class="blog-snippet">Tecnología asequible que funciona de verdad. Sin engaños, con prueba panda incluida.</p>
-            <div class="blog-meta"><span class="blog-time">📖 7 min</span><span class="blog-arrow">Ver →</span></div>
-          </div>
-        </a>
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-c">✈️<span class="cat-badge">Viajes · Vuelos</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label">Viajes baratos</div>
-            <div class="blog-title">Cómo viajar barato como un panda en 2025</div>
-            <p class="blog-snippet">Estrategias reales para encontrar las mejores ofertas de viaje sin perder horas.</p>
-            <div class="blog-meta"><span class="soon-badge">● Próximamente</span><span class="blog-arrow">Ver →</span></div>
-          </div>
-        </a>
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-d">👗<span class="cat-badge">Moda · Temporada</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label">Moda & estilo</div>
-            <div class="blog-title">Rebajas de temporada: qué merece la pena comprar</div>
-            <p class="blog-snippet">Guía honesta sobre qué comprar en rebajas y qué es trampa de los grandes almacenes.</p>
-            <div class="blog-meta"><span class="soon-badge">● Próximamente</span><span class="blog-arrow">Ver →</span></div>
-          </div>
-        </a>
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-e">🎮<span class="cat-badge">Gaming · Consolas</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label">Gaming</div>
-            <div class="blog-title">Ofertas de videojuegos: dónde comprar más barato</div>
-            <p class="blog-snippet">Plataformas, tiendas y trucos para pagar menos por los mejores juegos.</p>
-            <div class="blog-meta"><span class="soon-badge">● Próximamente</span><span class="blog-arrow">Ver →</span></div>
-          </div>
-        </a>
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-a">🏠<span class="cat-badge">Hogar · Deco</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label">Hogar</div>
-            <div class="blog-title">Decora tu casa sin arruinarte: chollos de decoración</div>
-            <p class="blog-snippet">Las mejores piezas de decoración de Ikea, Amazon y tiendas outlet a precios increíbles.</p>
-            <div class="blog-meta"><span class="soon-badge">● Próximamente</span><span class="blog-arrow">Ver →</span></div>
-          </div>
-        </a>
+        <a href="#" class="blog-card"><div class="blog-thumb t-sage">🛒<span class="cat-badge">Amazon · Hogar</span></div><div class="blog-body"><div class="blog-cat cat-chollo">Chollos semanales</div><div class="blog-title">Los 10 mejores chollos de Amazon esta semana</div><p class="blog-snippet">Selección panda verificada. Todo probado, todo real.</p><div class="blog-meta"><span class="blog-time">📖 5 min</span><span class="blog-arrow">Ver →</span></div></div></a>
+        <a href="#" class="blog-card"><div class="blog-thumb t-butter">💻<span class="cat-badge">Tech · Gadgets</span></div><div class="blog-body"><div class="blog-cat cat-chollo">Tecnología</div><div class="blog-title">Gadgets por menos de 20€ que cambiarán tu vida</div><p class="blog-snippet">Tecnología asequible que funciona de verdad.</p><div class="blog-meta"><span class="blog-time">📖 7 min</span><span class="blog-arrow">Ver →</span></div></div></a>
+        <a href="#" class="blog-card"><div class="blog-thumb t-sky">✈️<span class="cat-badge">Viajes</span></div><div class="blog-body"><div class="blog-cat cat-chollo">Viajes baratos</div><div class="blog-title">Cómo viajar barato como un panda en 2025</div><p class="blog-snippet">Estrategias reales para las mejores ofertas de viaje.</p><div class="blog-meta"><span class="soon-badge">● Próximamente</span><span class="blog-arrow">Ver →</span></div></div></a>
       </div>
     </div>
 
     <!-- FINANZAS -->
     <div id="panel-finanzas" class="tab-panel">
       <div class="highlight">
-        <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:56px;height:56px;border-radius:14px;object-fit:cover">
-        <div class="hl-content">
+        <div class="hl-icon"><img src="PANDACHOLLO.JPG" alt="Pandachollo"></div>
+        <div>
           <div class="hl-label">Educación financiera</div>
           <div class="hl-title">Que tu dinero <em>trabaje por ti</em></div>
-          <p class="hl-desc">Guías claras, sin tecnicismos, para que empieces a invertir, ahorrar y rentabilizar tu dinero aunque nunca hayas pensado en ello.</p>
+          <p class="hl-desc">Guías claras, sin tecnicismos, para que empieces a invertir y ahorrar hoy mismo.</p>
         </div>
       </div>
       <div class="blog-grid">
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-d">📈<span class="cat-badge">Inversión · Principiantes</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label fin">Inversión</div>
-            <div class="blog-title">Cómo empezar a invertir con 50€ al mes</div>
-            <p class="blog-snippet">Guía panda para principiantes que quieren que su dinero trabaje sin complicarse.</p>
-            <div class="blog-meta"><span class="blog-time">📖 10 min</span><span class="blog-arrow">Leer →</span></div>
-          </div>
-        </a>
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-b">🏦<span class="cat-badge">Cuentas remuneradas</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label fin">Ahorro</div>
-            <div class="blog-title">Las mejores cuentas remuneradas de 2025</div>
-            <p class="blog-snippet">Comparativa real de cuentas que te dan dinero por tenerlo ahí. Seguro y rentable.</p>
-            <div class="blog-meta"><span class="blog-time">📖 8 min</span><span class="blog-arrow">Leer →</span></div>
-          </div>
-        </a>
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-c">💳<span class="cat-badge">Tarjetas · Cashback</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label fin">Tarjetas</div>
-            <div class="blog-title">Tarjetas sin comisiones que deberías tener ya</div>
-            <p class="blog-snippet">Las tarjetas favoritas del panda para no pagar comisiones y ganar cashback.</p>
-            <div class="blog-meta"><span class="blog-time">📖 6 min</span><span class="blog-arrow">Leer →</span></div>
-          </div>
-        </a>
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-e">🤖<span class="cat-badge">Automatización · Ahorro</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label fin">Finanzas personales</div>
-            <div class="blog-title">Cómo automatizar tus ahorros para no pensar en ello</div>
-            <p class="blog-snippet">El método panda para que el dinero se distribuya solo cada mes sin esfuerzo.</p>
-            <div class="blog-meta"><span class="soon-badge">● Próximamente</span><span class="blog-arrow">Leer →</span></div>
-          </div>
-        </a>
-        <a href="#" class="blog-card">
-          <div class="blog-thumb thumb-a">📊<span class="cat-badge">ETFs · Fondos índice</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label fin">Inversión</div>
-            <div class="blog-title">ETFs vs fondos activos: la guía honesta</div>
-            <p class="blog-snippet">Por qué el panda prefiere los fondos indexados y cómo elegir el tuyo sin complicarte.</p>
-            <div class="blog-meta"><span class="soon-badge">● Próximamente</span><span class="blog-arrow">Leer →</span></div>
-          </div>
-        </a>
-        <a href="referidos.html" class="blog-card">
-          <div class="blog-thumb thumb-b">🏦<span class="cat-badge">Referidos · Bonos</span></div>
-          <div class="blog-body">
-            <div class="blog-cat-label fin">Códigos referido</div>
-            <div class="blog-title">Gana dinero solo por abrir una cuenta: mis códigos</div>
-            <p class="blog-snippet">Todos mis códigos de referido de bancos y apps. Bonus gratis para ti desde el primer día.</p>
-            <div class="blog-meta"><span class="blog-time">🎁 Bonus disponibles</span><span class="blog-arrow">Ver →</span></div>
-          </div>
-        </a>
+        <a href="#" class="blog-card"><div class="blog-thumb t-lav">📈<span class="cat-badge">Inversión</span></div><div class="blog-body"><div class="blog-cat cat-fin">Inversión</div><div class="blog-title">Cómo empezar a invertir con 50€ al mes</div><p class="blog-snippet">Guía panda para principiantes, paso a paso.</p><div class="blog-meta"><span class="blog-time">📖 10 min</span><span class="blog-arrow">Leer →</span></div></div></a>
+        <a href="#" class="blog-card"><div class="blog-thumb t-butter">🏦<span class="cat-badge">Ahorro</span></div><div class="blog-body"><div class="blog-cat cat-fin">Ahorro</div><div class="blog-title">Las mejores cuentas remuneradas de 2025</div><p class="blog-snippet">Comparativa real de cuentas que te dan dinero.</p><div class="blog-meta"><span class="blog-time">📖 8 min</span><span class="blog-arrow">Leer →</span></div></div></a>
+        <a href="referidos.html" class="blog-card"><div class="blog-thumb t-sage">🏦<span class="cat-badge">Referidos</span></div><div class="blog-body"><div class="blog-cat cat-fin">Códigos referido</div><div class="blog-title">Gana dinero solo por abrir una cuenta</div><p class="blog-snippet">Todos mis códigos de referido de bancos y apps.</p><div class="blog-meta"><span class="blog-time">🎁 Bonus disponibles</span><span class="blog-arrow">Ver →</span></div></div></a>
       </div>
     </div>
 
     <div class="social-cta">
       <img src="PANDACHOLLO.JPG" alt="Pandachollo" style="width:52px;height:52px;border-radius:50%;object-fit:cover;margin:0 auto 0.75rem;display:block">
       <h3>Todo esto y más en <em>Pandachollo</em></h3>
-      <p>Chollos diarios, análisis financieros y los mejores códigos referido. Sígueme para no perderte ninguno.</p>
+      <p style="color:var(--mid);font-size:0.88rem;margin-bottom:1.25rem">Sígueme para no perderte ningún chollo ni consejo financiero.</p>
       <div class="soc-row" style="margin-bottom:0.75rem">
-        <a href="https://www.tiktok.com/@pandachollo" target="_blank" class="s-btn s-tiktok">TikTok @pandachollo</a>
-        <a href="https://www.youtube.com/@pandachollo" target="_blank" class="s-btn s-yt">YouTube</a>
+        <a href="https://www.tiktok.com/@pandachollo" target="_blank" rel="noopener" class="s-btn s-tiktok">TikTok @pandachollo</a>
+        <a href="https://www.youtube.com/@pandachollo" target="_blank" rel="noopener" class="s-btn s-yt">YouTube</a>
       </div>
       <a href="referidos.html" class="ref-cta">Ver todos los códigos referido →</a>
     </div>
@@ -280,60 +162,48 @@ footer{background:var(--charcoal);padding:3rem 2rem 1.5rem;margin-top:4rem}
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <a href="index.html" class="f-logo"><img src="PANDALICIOSUS.JPG" alt="PandaUniverse" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0;">Panda<em>Universe</em></a>
-    <ul class="f-nav">
-      <li><a href="recetas.html">Recetas</a></li>
-      <li><a href="chollos.html">Chollos</a></li>
-      <li><a href="tienda.html">Tienda</a></li>
-      <li><a href="referidos.html">Referidos</a></li>
-      <li><a href="index.html#newsletter">Newsletter</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-    </ul>
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="f-logo">
+        <img src="PANDALICIOSUS.JPG" alt="PandaUniverse">
+        Panda<em>Universe</em>
+      </a>
+      <p class="f-desc">Dos marcas, un espíritu. Recetas, chollos, finanzas y TikTok Shop con sello panda.</p>
+    </div>
+    <div class="f-col">
+      <h5>Pandaliciosus</h5>
+      <ul>
+        <li><a href="recetas.html">Blog de recetas</a></li>
+        <li><a href="https://www.tiktok.com/@pandaliciosus" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.instagram.com/pandaliciosus" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@pandaliciosus" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Pandachollo</h5>
+      <ul>
+        <li><a href="chollos.html">Blog de chollos</a></li>
+        <li><a href="referidos.html">Códigos referido</a></li>
+        <li><a href="https://www.tiktok.com/@pandachollo" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.youtube.com/@pandachollo" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="contacto.html">Formulario de contacto</a></li>
+        <li><a href="contacto.html">Colaboraciones</a></li>
+        <li><a href="contacto.html">Sobre mí</a></li>
+      </ul>
+    </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 PandaUniverse · Hecho con 🐼</span>
+    <span>© 2025 PandaUniverse · Hecho con 🐼 y mucho bambú</span>
     <span><a href="privacidad.html">Privacidad</a> · <a href="aviso-legal.html">Aviso legal</a></span>
   </div>
 </footer>
 
-
-<script>
-/* ── HAMBURGER ── */
-function toggleMenu(){
-  var m = document.getElementById('mobileMenu');
-  var b = document.getElementById('hamburgerBtn');
-  if(!m || !b) return;
-  var open = m.classList.toggle('open');
-  var spans = b.querySelectorAll('span');
-  if(open){
-    spans[0].style.transform='rotate(45deg) translate(5px,5px)';
-    spans[1].style.opacity='0';
-    spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
-  } else {
-    spans[0].style.transform='';
-    spans[1].style.opacity='1';
-    spans[2].style.transform='';
-  }
-}
-document.addEventListener('click', function(e){
-  var m = document.getElementById('mobileMenu');
-  var b = document.getElementById('hamburgerBtn');
-  if(!m || !b) return;
-  if(!m.contains(e.target) && !b.contains(e.target)){
-    m.classList.remove('open');
-    var spans = b.querySelectorAll('span');
-    spans[0].style.transform=''; spans[1].style.opacity='1'; spans[2].style.transform='';
-  }
-});
-
-/* ── TABS ── */
-function switchTab(key, btn){
-  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById('panel-'+key).classList.add('active');
-}
-</script>
+<script src="config.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
